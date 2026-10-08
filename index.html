@@ -1,1807 +1,623 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false'
-      b:defaultwidgetversion='2'
-      b:layoutsVersion='3'
-      b:responsive='true'
-      b:templateVersion='1.0.0'
-      dir='ltr'
-      lang='pt-BR'
-      xmlns='http://www.w3.org/1999/xhtml'
-      xmlns:b='http://www.google.com/2005/gml/b'
-      xmlns:data='http://www.google.com/2005/gml/data'
-      xmlns:expr='http://www.google.com/2005/gml/expr'>
-
+<html lang="pt-BR">
 <head>
+  <meta charset="UTF-8">
 
-  <meta charset='UTF-8'/>
-  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Rádio Futebol FM — Futebol, Notícias e Informação</title>
 
-  <meta content='Rádio Futebol FM — futebol, notícias, informação, programação e música.' name='description'/>
-  <meta content='index, follow, max-image-preview:large' name='robots'/>
-  <link href='https://radiofutebolfm.online/' rel='canonical'/>
+  <meta name="description" content="Rádio Futebol FM — futebol, notícias, informação, programação e entretenimento em tempo real.">
 
-  <!-- GOOGLE ANALYTICS -->
-  <script async='async' src='https://www.googletagmanager.com/gtag/js?id=G-FNGX30KP27'></script>
-  <script type='text/javascript'>
-  //<![CDATA[
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FNGX30KP27');
-  //]]>
+  <meta name="robots" content="index,follow,max-image-preview:large">
+
+  <link rel="canonical" href="https://radiofutebolfm.online/">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988"
+    crossorigin="anonymous"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNGX30KP27"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-FNGX30KP27');
   </script>
 
-  <!-- GOOGLE ADSENSE -->
-  <script async='async'
-    crossorigin='anonymous'
-    src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988'>
+  <!-- Tema automático -->
+  <style>
+    :root {
+      --rf-bg: #080808;
+      --rf-card: #151515;
+      --rf-text: #ffffff;
+      --rf-muted: #cccccc;
+      --rf-border: rgba(255,255,255,.12);
+      --rf-accent: #e00000;
+    }
+
+    body.light-mode {
+      --rf-bg: #f4f4f4;
+      --rf-card: #ffffff;
+      --rf-text: #111111;
+      --rf-muted: #555555;
+      --rf-border: rgba(0,0,0,.12);
+      --rf-accent: #c90000;
+    }
+
+    body {
+      background: var(--rf-bg);
+      color: var(--rf-text);
+    }
+
+    .site,
+    .card,
+    header,
+    nav,
+    footer,
+    aside,
+    .topbar,
+    .advertising {
+      color: var(--rf-text);
+    }
+
+    .card,
+    aside,
+    .advertising {
+      background-color: var(--rf-card);
+      border-color: var(--rf-border);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .rf-ad-box {
+      width: 100%;
+      min-height: 90px;
+      margin: 18px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .rf-ad-box.side-ad {
+      min-height: 300px;
+    }
+
+    .rf-ad-title {
+      width: 100%;
+      text-align: center;
+      font-size: 11px;
+      color: var(--rf-muted);
+      margin-bottom: 5px;
+    }
+
+    .rf-social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rf-social-grid a {
+      display: block;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(127,127,127,.12);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .rf-social-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      function atualizarTema() {
+        const hora = new Date().getHours();
+
+        /*
+          06:00 até 17:59 = escuro
+          18:00 até 05:59 = claro
+        */
+        document.body.classList.toggle(
+          "light-mode",
+          hora >= 18 || hora < 6
+        );
+      }
+
+      atualizarTema();
+      setInterval(atualizarTema, 60000);
+    })();
   </script>
-
-  <!-- ADSTERRA SCRIPT 1 -->
-  <script src='https://ripenhopperwitty.com/5c/15/e4/5c15e40d8576f9b8a8bb883480bbe7d1.js'></script>
-
-  <b:skin><![CDATA[
-
-  *{
-    box-sizing:border-box;
-  }
-
-  html{
-    scroll-behavior:smooth;
-  }
-
-  body{
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#050505;
-    color:#fff;
-    transition:
-      background .5s ease,
-      color .5s ease;
-  }
-
-  body.rf-light{
-    background:#f4f4f4;
-    color:#171717;
-  }
-
-  a{
-    color:inherit;
-    text-decoration:none;
-  }
-
-  img{
-    max-width:100%;
-    display:block;
-  }
-
-  button,
-  input,
-  textarea{
-    font-family:inherit;
-  }
-
-  /* =========================================
-     SITE
-  ========================================= */
-
-  .rf-site{
-    width:100%;
-    min-height:100vh;
-  }
-
-  .rf-container{
-    width:100%;
-    max-width:1500px;
-    margin:0 auto;
-    padding:0 22px;
-  }
-
-  /* =========================================
-     TOP BAR
-  ========================================= */
-
-  .rf-top{
-    width:100%;
-    background:#050505;
-    border-bottom:1px solid #252525;
-    padding:8px 0;
-    font-size:13px;
-  }
-
-  .rf-light .rf-top{
-    background:#fff;
-    border-bottom:1px solid #ddd;
-    color:#222;
-  }
-
-  .rf-top-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    flex-wrap:wrap;
-  }
-
-  .rf-clock{
-    font-weight:bold;
-  }
-
-  .rf-weather{
-    opacity:.9;
-  }
-
-  /* =========================================
-     HEADER
-  ========================================= */
-
-  .rf-header{
-    width:100%;
-    background:linear-gradient(135deg,#070707,#171717);
-    border-bottom:3px solid #e00000;
-    padding:18px 0;
-  }
-
-  .rf-light .rf-header{
-    background:linear-gradient(135deg,#fff,#eeeeee);
-    color:#111;
-  }
-
-  .rf-header-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:25px;
-  }
-
-  .rf-brand{
-    display:flex;
-    align-items:center;
-    gap:15px;
-  }
-
-  .rf-logo{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid #e00000;
-    background:#111;
-  }
-
-  .rf-brand h1{
-    margin:0;
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:.5px;
-  }
-
-  .rf-brand p{
-    margin:5px 0 0;
-    color:#bbb;
-    font-size:14px;
-  }
-
-  .rf-light .rf-brand p{
-    color:#555;
-  }
-
-  /* =========================================
-     MENU
-  ========================================= */
-
-  .rf-nav{
-    width:100%;
-    background:#0d0d0d;
-    border-bottom:1px solid #2b2b2b;
-    position:sticky;
-    top:0;
-    z-index:1000;
-  }
-
-  .rf-light .rf-nav{
-    background:#fff;
-    border-bottom:1px solid #ddd;
-  }
-
-  .rf-nav-inner{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-
-  .rf-nav a{
-    padding:15px 13px;
-    font-size:14px;
-    font-weight:bold;
-    transition:.2s;
-  }
-
-  .rf-nav a:hover{
-    background:#e00000;
-    color:#fff;
-  }
-
-  /* =========================================
-     MAIN
-  ========================================= */
-
-  .rf-main{
-    width:100%;
-    padding:25px 0 50px;
-  }
-
-  .rf-grid{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 330px;
-    gap:25px;
-    align-items:start;
-  }
-
-  .rf-content{
-    min-width:0;
-  }
-
-  .rf-sidebar{
-    min-width:0;
-  }
-
-  /* =========================================
-     CARDS
-  ========================================= */
-
-  .rf-card{
-    background:#111;
-    border:1px solid #292929;
-    border-radius:14px;
-    padding:20px;
-    margin-bottom:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
-  }
-
-  .rf-light .rf-card{
-    background:#fff;
-    border-color:#ddd;
-    color:#181818;
-    box-shadow:0 6px 20px rgba(0,0,0,.08);
-  }
-
-  .rf-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin:0 0 18px;
-    padding-bottom:12px;
-    border-bottom:2px solid #e00000;
-    font-size:22px;
-  }
-
-  /* =========================================
-     PLAYER
-  ========================================= */
-
-  .rf-player{
-    padding:0;
-    overflow:hidden;
-    background:#000;
-  }
-
-  .rf-player iframe{
-    width:100%;
-    height:125px;
-    border:0;
-    display:block;
-  }
-
-  .rf-live{
-    text-align:center;
-    padding:12px;
-    background:#e00000;
-    color:#fff;
-    font-weight:900;
-    text-transform:uppercase;
-  }
-
-  /* =========================================
-     NEWS
-  ========================================= */
-
-  .rf-news{
-    position:relative;
-    overflow:hidden;
-    border-radius:12px;
-    background:#080808;
-  }
-
-  .rf-light .rf-news{
-    background:#eee;
-  }
-
-  .rf-slide{
-    display:none;
-  }
-
-  .rf-slide.active{
-    display:block;
-  }
-
-  .rf-slide-image{
-    width:100%;
-    height:450px;
-    object-fit:cover;
-    background:#222;
-  }
-
-  .rf-slide-content{
-    padding:20px;
-  }
-
-  .rf-slide-content h3{
-    margin:0 0 10px;
-    font-size:24px;
-    line-height:1.25;
-  }
-
-  .rf-slide-content p{
-    color:#bbb;
-    line-height:1.6;
-  }
-
-  .rf-light .rf-slide-content p{
-    color:#555;
-  }
-
-  .rf-news-link{
-    display:inline-block;
-    margin-top:8px;
-    padding:10px 15px;
-    border-radius:7px;
-    background:#e00000;
-    color:#fff;
-    font-weight:bold;
-  }
-
-  .rf-slider-controls{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 20px 18px;
-  }
-
-  .rf-slider-controls button{
-    border:0;
-    background:#e00000;
-    color:#fff;
-    padding:9px 15px;
-    border-radius:6px;
-    cursor:pointer;
-    font-weight:bold;
-  }
-
-  .rf-dots{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-  }
-
-  .rf-dot{
-    width:9px;
-    height:9px;
-    padding:0;
-    border:0;
-    border-radius:50%;
-    background:#777;
-    cursor:pointer;
-  }
-
-  .rf-dot.active{
-    background:#e00000;
-  }
-
-  /* =========================================
-     VIDEO
-  ========================================= */
-
-  .rf-video{
-    position:relative;
-    width:100%;
-    padding-bottom:56.25%;
-    height:0;
-    overflow:hidden;
-    border-radius:10px;
-    background:#000;
-  }
-
-  .rf-video iframe{
-    position:absolute;
-    width:100%;
-    height:100%;
-    border:0;
-    left:0;
-    top:0;
-  }
-
-  /* =========================================
-     FOOTBALL
-  ========================================= */
-
-  .rf-football-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-  }
-
-  .rf-football-box{
-    padding:18px;
-    border-radius:10px;
-    background:#181818;
-    border-left:4px solid #e00000;
-  }
-
-  .rf-light .rf-football-box{
-    background:#f1f1f1;
-  }
-
-  .rf-football-box strong{
-    display:block;
-    margin-bottom:6px;
-  }
-
-  /* =========================================
-     PROGRAMMING
-  ========================================= */
-
-  .rf-program{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
-
-  .rf-program-item{
-    padding:15px;
-    background:#181818;
-    border-radius:9px;
-  }
-
-  .rf-light .rf-program-item{
-    background:#f1f1f1;
-  }
-
-  .rf-program-time{
-    color:#e00000;
-    font-weight:900;
-  }
-
-  /* =========================================
-     SOCIAL
-  ========================================= */
-
-  .rf-social-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-  }
-
-  .rf-social{
-    display:block;
-    padding:16px;
-    text-align:center;
-    border-radius:9px;
-    background:#181818;
-    font-weight:bold;
-    transition:.2s;
-  }
-
-  .rf-light .rf-social{
-    background:#f1f1f1;
-  }
-
-  .rf-social:hover{
-    background:#e00000;
-    color:#fff;
-  }
-
-  /* =========================================
-     CONTACT
-  ========================================= */
-
-  .rf-form{
-    display:grid;
-    gap:12px;
-  }
-
-  .rf-form input,
-  .rf-form textarea{
-    width:100%;
-    border:1px solid #444;
-    background:#090909;
-    color:#fff;
-    border-radius:8px;
-    padding:13px;
-    outline:none;
-  }
-
-  .rf-light .rf-form input,
-  .rf-light .rf-form textarea{
-    background:#fff;
-    color:#111;
-    border-color:#ccc;
-  }
-
-  .rf-form textarea{
-    min-height:140px;
-    resize:vertical;
-  }
-
-  .rf-form button{
-    border:0;
-    padding:13px;
-    background:#e00000;
-    color:#fff;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-  }
-
-  /* =========================================
-     ADS
-  ========================================= */
-
-  .rf-ad{
-    margin:20px auto;
-    text-align:center;
-    padding:10px;
-    border-radius:10px;
-    background:#0d0d0d;
-    border:1px solid #262626;
-    overflow:hidden;
-  }
-
-  .rf-light .rf-ad{
-    background:#fff;
-    border-color:#ddd;
-  }
-
-  .rf-ad-label{
-    display:block;
-    margin-bottom:8px;
-    font-size:10px;
-    color:#888;
-    text-transform:uppercase;
-    letter-spacing:1px;
-  }
-
-  .rf-ad-160{
-    min-height:320px;
-  }
-
-  .rf-ad-300{
-    min-height:270px;
-  }
-
-  /* =========================================
-     SIDEBAR
-  ========================================= */
-
-  .rf-sidebar .rf-card{
-    margin-bottom:20px;
-  }
-
-  .rf-sidebar-title{
-    font-size:18px;
-    margin:0 0 15px;
-    border-bottom:2px solid #e00000;
-    padding-bottom:10px;
-  }
-
-  /* =========================================
-     WHATSAPP
-  ========================================= */
-
-  .rf-whatsapp{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    z-index:2000;
-    width:58px;
-    height:58px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:50%;
-    background:#25d366;
-    color:#fff;
-    font-size:28px;
-    box-shadow:0 5px 20px rgba(0,0,0,.35);
-  }
-
-  /* =========================================
-     FOOTER
-  ========================================= */
-
-  .rf-footer{
-    background:#050505;
-    color:#aaa;
-    padding:30px 0;
-    border-top:3px solid #e00000;
-  }
-
-  .rf-light .rf-footer{
-    background:#fff;
-    color:#555;
-    border-top-color:#e00000;
-  }
-
-  .rf-footer-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:25px;
-  }
-
-  .rf-footer h3{
-    color:#fff;
-  }
-
-  .rf-light .rf-footer h3{
-    color:#111;
-  }
-
-  .rf-copy{
-    margin-top:25px;
-    padding-top:15px;
-    border-top:1px solid #333;
-    text-align:center;
-    font-size:13px;
-  }
-
-  /* =========================================
-     HIDDEN BLOGGER WIDGET AREA
-  ========================================= */
-
-  #blogger-widgets{
-    display:none;
-  }
-
-  /* =========================================
-     MOBILE
-  ========================================= */
-
-  @media(max-width:1000px){
-
-    .rf-grid{
-      grid-template-columns:1fr;
-    }
-
-    .rf-sidebar{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:15px;
-    }
-
-    .rf-sidebar .rf-card{
-      margin-bottom:0;
-    }
-
-  }
-
-  @media(max-width:700px){
-
-    .rf-container{
-      padding:0 12px;
-    }
-
-    .rf-header-inner{
-      flex-direction:column;
-      text-align:center;
-    }
-
-    .rf-brand{
-      justify-content:center;
-    }
-
-    .rf-brand h1{
-      font-size:23px;
-    }
-
-    .rf-logo{
-      width:62px;
-      height:62px;
-    }
-
-    .rf-nav-inner{
-      justify-content:flex-start;
-      overflow-x:auto;
-      flex-wrap:nowrap;
-    }
-
-    .rf-nav a{
-      white-space:nowrap;
-      padding:13px 10px;
-      font-size:13px;
-    }
-
-    .rf-slide-image{
-      height:250px;
-    }
-
-    .rf-slide-content h3{
-      font-size:19px;
-    }
-
-    .rf-football-grid,
-    .rf-program,
-    .rf-social-grid,
-    .rf-sidebar,
-    .rf-footer-grid{
-      grid-template-columns:1fr;
-    }
-
-    .rf-player iframe{
-      height:110px;
-    }
-
-  }
-
-  ]]></b:skin>
-
 </head>
 
 <body>
 
-<div class='rf-site'>
+  <div class="site">
 
-  <!-- =====================================
-       TOPO
-  ====================================== -->
+    <!-- TOPO -->
+    <div class="topbar">
 
-  <div class='rf-top'>
-    <div class='rf-container rf-top-inner'>
-      <div class='rf-clock' id='rfClock'>Carregando horário...</div>
-      <div class='rf-weather' id='rfWeather'>🌤️ Betim - MG</div>
-    </div>
-  </div>
+      <div id="clock">
+        Carregando horário...
+      </div>
 
-  <!-- =====================================
-       CABEÇALHO
-  ====================================== -->
-
-  <header class='rf-header'>
-    <div class='rf-container rf-header-inner'>
-
-      <div class='rf-brand'>
-
-        <img
-          class='rf-logo'
-          src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEplaceholder/s1600/logo.png'
-          alt='Rádio Futebol FM'
-          onerror='this.style.display="none"'
-        />
-
-        <div>
-          <h1>RÁDIO FUTEBOL FM</h1>
-          <p>Futebol, notícias e informação em tempo real.</p>
-        </div>
-
+      <div id="weather">
+        🌤️ Betim - MG
       </div>
 
     </div>
-  </header>
 
-  <!-- =====================================
-       MENU
-  ====================================== -->
 
-  <nav class='rf-nav'>
-    <div class='rf-container rf-nav-inner'>
+    <!-- CABEÇALHO -->
+    <header>
 
-      <a href='#inicio'>Início</a>
-      <a href='#futebol'>⚽ Futebol</a>
-      <a href='#noticias'>📰 Notícias</a>
-      <a href='#youtube'>▶️ YouTube</a>
-      <a href='#programacao'>📻 Programação</a>
-      <a href='#contato'>📩 Contato</a>
-      <a href='#quem-somos'>👥 Quem Somos</a>
-      <a href='#privacidade'>🔒 Privacidade</a>
+      <div class="brand">
 
-    </div>
-  </nav>
-
-  <!-- =====================================
-       CONTEÚDO
-  ====================================== -->
-
-  <main class='rf-main' id='inicio'>
-
-    <div class='rf-container rf-grid'>
-
-      <section class='rf-content'>
-
-        <!-- PLAYER -->
-
-        <section class='rf-card rf-player'>
-
-          <div class='rf-live'>
-            🔴 AO VIVO — RÁDIO FUTEBOL FM
-          </div>
-
-          <iframe
-            src='https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///'
-            allow='autoplay'
-            title='Player Rádio Futebol FM'>
-          </iframe>
-
-        </section>
-
-        <!-- ANÚNCIO ADSTERRA 160x300 -->
-
-        <div class='rf-ad rf-ad-160'>
-
-          <span class='rf-ad-label'>Publicidade</span>
-
-          <script type='text/javascript'>
-          //<![CDATA[
-          atOptions = {
-            'key' : '041b44eddbbb93f0618bf618ee24bada',
-            'format' : 'iframe',
-            'height' : 300,
-            'width' : 160,
-            'params' : {}
-          };
-          //]]>
-          </script>
-
-          <script
-            src='https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js'
-            type='text/javascript'>
-          </script>
-
+        <div class="brand-logo">
+          ⚽
         </div>
-
-        <!-- NOTÍCIAS -->
-
-        <section class='rf-card' id='noticias'>
-
-          <h2 class='rf-title'>📰 Últimas Notícias</h2>
-
-          <div class='rf-news' id='rfNewsSlider'>
-
-            <div class='rf-slide active'>
-              <div class='rf-slide-content'>
-                <h3>Carregando notícias...</h3>
-                <p>As principais notícias serão carregadas automaticamente.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div class='rf-slider-controls'>
-
-            <button id='rfPrev' type='button'>
-              ◀ Anterior
-            </button>
-
-            <div class='rf-dots' id='rfDots'></div>
-
-            <button id='rfNext' type='button'>
-              Próxima ▶
-            </button>
-
-          </div>
-
-        </section>
-
-        <!-- ANÚNCIO ADSTERRA 300x250 -->
-
-        <div class='rf-ad rf-ad-300'>
-
-          <span class='rf-ad-label'>Publicidade</span>
-
-          <script type='text/javascript'>
-          //<![CDATA[
-          atOptions = {
-            'key' : 'c1528e379b1c65940841f09cdca36025',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-          };
-          //]]>
-          </script>
-
-          <script
-            src='https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js'
-            type='text/javascript'>
-          </script>
-
-        </div>
-
-        <!-- FUTEBOL -->
-
-        <section class='rf-card' id='futebol'>
-
-          <h2 class='rf-title'>⚽ Futebol</h2>
-
-          <div class='rf-football-grid'>
-
-            <div class='rf-football-box'>
-              <strong>⚽ Notícias do Futebol</strong>
-              <span>Informações, resultados e destaques do mundo da bola.</span>
-            </div>
-
-            <div class='rf-football-box'>
-              <strong>🏆 Campeonatos</strong>
-              <span>Confira as principais competições nacionais e internacionais.</span>
-            </div>
-
-            <div class='rf-football-box'>
-              <strong>🎙️ Rádio Futebol FM</strong>
-              <span>Futebol e informação acompanhando você.</span>
-            </div>
-
-          </div>
-
-        </section>
-
-        <!-- YOUTUBE -->
-
-        <section class='rf-card' id='youtube'>
-
-          <h2 class='rf-title'>▶️ YouTube</h2>
-
-          <div class='rf-video'>
-
-            <iframe
-              src='https://www.youtube.com/embed/1Y4Yd2DdTPY?si=OThPdNh2rxf4BVHq'
-              title='Rádio Futebol FM no YouTube'
-              allowfullscreen='allowfullscreen'>
-            </iframe>
-
-          </div>
-
-        </section>
-
-        <!-- ADSTERRA SCRIPT 3 -->
-
-        <div class='rf-ad'>
-
-          <span class='rf-ad-label'>Publicidade</span>
-
-          <script
-            src='https://ripenhopperwitty.com/5c/15/e4/5c15e40d8576f9b8a8bb883480bbe7d1.js'>
-          </script>
-
-        </div>
-
-        <!-- PROGRAMAÇÃO -->
-
-        <section class='rf-card' id='programacao'>
-
-          <h2 class='rf-title'>📻 Programação</h2>
-
-          <div class='rf-program'>
-
-            <div class='rf-program-item'>
-              <div class='rf-program-time'>00:00</div>
-              Madrugada Futebol FM
-            </div>
-
-            <div class='rf-program-item'>
-              <div class='rf-program-time'>06:00</div>
-              Manhã Futebol FM
-            </div>
-
-            <div class='rf-program-item'>
-              <div class='rf-program-time'>12:00</div>
-              Futebol e Informação
-            </div>
-
-            <div class='rf-program-item'>
-              <div class='rf-program-time'>18:00</div>
-              Noite Futebol FM
-            </div>
-
-          </div>
-
-        </section>
-
-        <!-- CONTATO -->
-
-        <section class='rf-card' id='contato'>
-
-          <h2 class='rf-title'>📩 Contato</h2>
-
-          <form
-            action='https://formsubmit.co/radiofutebol@gmail.com'
-            class='rf-form'
-            method='POST'>
-
-            <input
-              name='name'
-              placeholder='Seu nome'
-              required='required'
-              type='text'/>
-
-            <input
-              name='email'
-              placeholder='Seu e-mail'
-              required='required'
-              type='email'/>
-
-            <textarea
-              name='message'
-              placeholder='Digite sua mensagem'
-              required='required'>
-            </textarea>
-
-            <input
-              name='_subject'
-              type='hidden'
-              value='Contato — Rádio Futebol FM'/>
-
-            <input
-              name='_captcha'
-              type='hidden'
-              value='false'/>
-
-            <button type='submit'>
-              Enviar mensagem
-            </button>
-
-          </form>
-
-        </section>
-
-        <!-- QUEM SOMOS -->
-
-        <section class='rf-card' id='quem-somos'>
-
-          <h2 class='rf-title'>👥 Quem Somos</h2>
-
-          <p>
-            A Rádio Futebol FM é um portal dedicado ao futebol,
-            notícias, informação e entretenimento.
-          </p>
-
-          <p>
-            Nosso objetivo é levar conteúdo de qualidade aos ouvintes
-            e visitantes, reunindo rádio, notícias e informação em um
-            único lugar.
-          </p>
-
-        </section>
-
-        <!-- PRIVACIDADE -->
-
-        <section class='rf-card' id='privacidade'>
-
-          <h2 class='rf-title'>🔒 Política de Privacidade</h2>
-
-          <p>
-            A Rádio Futebol FM respeita a privacidade dos seus visitantes.
-            Este site pode utilizar cookies, ferramentas de análise,
-            publicidade e tecnologias semelhantes para melhorar a
-            experiência do usuário e manter os serviços disponíveis.
-          </p>
-
-          <p>
-            Serviços de publicidade, incluindo Google AdSense e outras
-            redes de anúncios, podem utilizar tecnologias próprias de
-            acordo com suas respectivas políticas.
-          </p>
-
-        </section>
-
-      </section>
-
-      <!-- =====================================
-           SIDEBAR
-      ====================================== -->
-
-      <aside class='rf-sidebar'>
-
-        <!-- INSTAGRAM -->
-
-        <section class='rf-card'>
-
-          <h2 class='rf-sidebar-title'>📸 Instagram</h2>
-
-          <a
-            href='https://www.instagram.com/p/DeBYER6FYK2/'
-            rel='noopener noreferrer'
-            target='_blank'>
-            Acompanhe a Rádio Futebol FM no Instagram.
-          </a>
-
-        </section>
-
-        <!-- TIKTOK -->
-
-        <section class='rf-card'>
-
-          <h2 class='rf-sidebar-title'>🎵 TikTok</h2>
-
-          <a
-            href='https://www.tiktok.com/player/v1/7686285645068717319?music_info=1&amp;description=1'
-            rel='noopener noreferrer'
-            target='_blank'>
-            Veja nossos vídeos no TikTok.
-          </a>
-
-        </section>
-
-        <!-- FACEBOOK -->
-
-        <section class='rf-card'>
-
-          <h2 class='rf-sidebar-title'>📘 Facebook</h2>
-
-          <a
-            href='https://www.facebook.com/groups/1814238939829623'
-            rel='noopener noreferrer'
-            target='_blank'>
-            Entre no grupo da Rádio Futebol FM.
-          </a>
-
-        </section>
-
-        <!-- GOOGLE PLAY -->
-
-        <section class='rf-card'>
-
-          <h2 class='rf-sidebar-title'>📱 Ouça no celular</h2>
-
-          <a
-            href='https://play.google.com/store/apps/details?id=br.com.radios.radiosmobile.radiosnet&amp;utm_source=global_co&amp;utm_medium=prtnr&amp;utm_content=Mar2515&amp;utm_campaign=PartBadge&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
-            rel='noopener noreferrer'
-            target='_blank'>
-
-            📻 Ouça pela RadiosNet / Google Play
-
-          </a>
-
-        </section>
-
-        <!-- ADSTERRA SCRIPT 4 -->
-
-        <section class='rf-card'>
-
-          <div class='rf-ad'>
-
-            <span class='rf-ad-label'>Publicidade</span>
-
-            <script
-              src='https://ripenhopperwitty.com/55/a6/68/55a668bdbf3fe43c7af9f69fb29528aa.js'>
-            </script>
-
-          </div>
-
-        </section>
-
-      </aside>
-
-    </div>
-
-  </main>
-
-  <!-- =====================================
-       RODAPÉ
-  ====================================== -->
-
-  <footer class='rf-footer'>
-
-    <div class='rf-container'>
-
-      <div class='rf-footer-grid'>
 
         <div>
-          <h3>📻 Rádio Futebol FM</h3>
+          <h1>RÁDIO FUTEBOL FM</h1>
+
           <p>
             Futebol, notícias e informação em tempo real.
           </p>
         </div>
 
-        <div>
-          <h3>Links</h3>
-          <p><a href='#inicio'>Início</a></p>
-          <p><a href='#noticias'>Notícias</a></p>
-          <p><a href='#futebol'>Futebol</a></p>
-          <p><a href='#contato'>Contato</a></p>
+      </div>
+
+
+      <!-- MENU -->
+      <nav>
+
+        <a href="#inicio">Início</a>
+
+        <a href="#futebol">⚽ Futebol</a>
+
+        <a href="#noticias">📰 Notícias</a>
+
+        <a href="#programacao">📻 Programação</a>
+
+        <a href="#youtube">▶️ YouTube</a>
+
+        <a href="#contato">📩 Contato</a>
+
+        <a href="#quem-somos">👥 Quem Somos</a>
+
+        <a href="#privacidade">🔒 Privacidade</a>
+
+      </nav>
+
+    </header>
+
+
+    <!-- INÍCIO -->
+    <main id="inicio">
+
+
+      <!-- PLAYER -->
+      <section class="card player">
+
+        <h2>🎙️ Ouça a Rádio Futebol FM</h2>
+
+        <iframe
+          src="https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///"
+          width="100%"
+          height="90"
+          frameborder="0"
+          scrolling="no"
+          allow="autoplay"
+          title="Player Rádio Futebol FM">
+        </iframe>
+
+      </section>
+
+
+      <!-- ANÚNCIO 1 - 160x300 -->
+      <section class="advertising">
+
+        <div class="rf-ad-title">
+          PUBLICIDADE
         </div>
 
-        <div>
-          <h3>Redes sociais</h3>
-          <p>
-            <a href='https://www.instagram.com/p/DeBYER6FYK2/' target='_blank'>
-              Instagram
-            </a>
-          </p>
-          <p>
-            <a href='https://www.facebook.com/groups/1814238939829623' target='_blank'>
-              Facebook
-            </a>
-          </p>
-          <p>
-            <a href='https://www.tiktok.com/player/v1/7686285645068717319?music_info=1&amp;description=1' target='_blank'>
-              TikTok
-            </a>
-          </p>
+        <div class="rf-ad-box side-ad">
+
+          <script>
+            atOptions = {
+              'key' : '041b44eddbbb93f0618bf618ee24bada',
+              'format' : 'iframe',
+              'height' : 300,
+              'width' : 160,
+              'params' : {}
+            };
+          </script>
+
+          <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
+
         </div>
+
+      </section>
+
+
+      <!-- NOTÍCIAS -->
+      <section id="noticias" class="card">
+
+        <h2 class="section-title">
+          📰 Últimas Notícias
+        </h2>
+
+        <div
+          class="slider"
+          id="newsSlider">
+
+          <div class="loading">
+            Carregando notícias...
+          </div>
+
+        </div>
+
+
+        <div class="slider-controls">
+
+          <button
+            id="prev"
+            type="button"
+            aria-label="Notícia anterior">
+            ❮
+          </button>
+
+          <div id="dots"></div>
+
+          <button
+            id="next"
+            type="button"
+            aria-label="Próxima notícia">
+            ❯
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ANÚNCIO 2 - 300x250 -->
+      <section class="advertising">
+
+        <div class="rf-ad-title">
+          PUBLICIDADE
+        </div>
+
+        <div class="rf-ad-box">
+
+          <script>
+            atOptions = {
+              'key' : 'c1528e379b1c65940841f09cdca36025',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+
+          <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
+
+        </div>
+
+      </section>
+
+
+      <!-- ÁREA PRINCIPAL -->
+      <div class="top-grid">
+
+
+        <!-- CONTEÚDO -->
+        <div>
+
+
+          <!-- FUTEBOL -->
+          <section id="futebol" class="card">
+
+            <h2 class="section-title">
+              ⚽ Futebol
+            </h2>
+
+            <p>
+              Acompanhe as principais notícias do futebol,
+              resultados, informações e novidades dos clubes.
+            </p>
+
+          </section>
+
+
+          <!-- YOUTUBE -->
+          <section id="youtube" class="card video">
+
+            <h2 class="section-title">
+              ▶️ YouTube
+            </h2>
+
+            <div class="video-container">
+
+              <iframe
+                src="https://www.youtube.com/embed/1Y4Yd2DdTPY?si=OThPdNh2rxf4BVHq"
+                title="Rádio Futebol FM no YouTube"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+
+            </div>
+
+          </section>
+
+
+          <!-- PROGRAMAÇÃO -->
+          <section id="programacao" class="card">
+
+            <h2 class="section-title">
+              📻 Programação
+            </h2>
+
+            <p>
+              Confira nossa programação e acompanhe a
+              Rádio Futebol FM durante todo o dia.
+            </p>
+
+          </section>
+
+
+          <!-- CONTATO -->
+          <section id="contato" class="card">
+
+            <h2 class="section-title">
+              📩 Contato
+            </h2>
+
+            <form
+              action="https://formsubmit.co/radiofutebol@gmail.com"
+              method="POST">
+
+              <input
+                type="hidden"
+                name="_subject"
+                value="Contato - Rádio Futebol FM">
+
+              <input
+                type="hidden"
+                name="_captcha"
+                value="false">
+
+              <input
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                required>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Seu e-mail"
+                required>
+
+              <textarea
+                name="mensagem"
+                rows="6"
+                placeholder="Digite sua mensagem"
+                required></textarea>
+
+              <button type="submit">
+                Enviar mensagem
+              </button>
+
+            </form>
+
+          </section>
+
+
+          <!-- ANÚNCIO 3 -->
+          <section class="advertising">
+
+            <div class="rf-ad-title">
+              PUBLICIDADE
+            </div>
+
+            <div class="rf-ad-box">
+
+              <script src="https://ripenhopperwitty.com/5c/15/e4/5c15e40d8576f9b8a8bb883480bbe7d1.js"></script>
+
+            </div>
+
+          </section>
+
+
+          <!-- QUEM SOMOS -->
+          <section id="quem-somos" class="card">
+
+            <h2 class="section-title">
+              👥 Quem Somos
+            </h2>
+
+            <p>
+              A Rádio Futebol FM é um portal dedicado ao
+              futebol, notícias, informação, entretenimento
+              e transmissão de rádio pela internet.
+            </p>
+
+            <p>
+              Nosso objetivo é levar informação e conteúdo
+              de qualidade aos nossos ouvintes.
+            </p>
+
+          </section>
+
+
+          <!-- PRIVACIDADE -->
+          <section id="privacidade" class="card">
+
+            <h2 class="section-title">
+              🔒 Política de Privacidade
+            </h2>
+
+            <p>
+              A Rádio Futebol FM respeita a privacidade
+              dos seus visitantes.
+            </p>
+
+            <p>
+              Utilizamos serviços de análise e publicidade,
+              como Google Analytics, Google AdSense e
+              redes de publicidade, que podem utilizar
+              cookies e tecnologias semelhantes.
+            </p>
+
+          </section>
+
+
+        </div>
+
+
+        <!-- LATERAL -->
+        <aside>
+
+
+          <!-- ANÚNCIO 4 -->
+          <div class="advertising">
+
+            <div class="rf-ad-title">
+              PUBLICIDADE
+            </div>
+
+            <div class="rf-ad-box">
+
+              <script src="https://ripenhopperwitty.com/55/a6/68/55a668bdbf3fe43c7af9f69fb29528aa.js"></script>
+
+            </div>
+
+          </div>
+
+
+          <!-- REDES SOCIAIS -->
+          <section class="card">
+
+            <h2 class="section-title">
+              📱 Nossas Redes
+            </h2>
+
+            <div class="rf-social-grid">
+
+              <a
+                href="https://www.instagram.com/p/DeBYER6FYK2/"
+                target="_blank"
+                rel="noopener noreferrer">
+                📸 Instagram
+              </a>
+
+              <a
+                href="https://www.tiktok.com/player/v1/7686285645068717319?music_info=1&description=1"
+                target="_blank"
+                rel="noopener noreferrer">
+                🎵 TikTok
+              </a>
+
+              <a
+                href="https://www.facebook.com/groups/1814238939829623"
+                target="_blank"
+                rel="noopener noreferrer">
+                📘 Facebook
+              </a>
+
+              <a
+                href="https://play.google.com/store/apps/details?id=br.com.radios.radiosmobile.radiosnet&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+                target="_blank"
+                rel="noopener noreferrer">
+                📱 RadiosNet / Google Play
+              </a>
+
+            </div>
+
+          </section>
+
+
+          <!-- WHATSAPP -->
+          <section class="card">
+
+            <h2 class="section-title">
+              💬 WhatsApp
+            </h2>
+
+            <p>
+              Fale conosco pelo WhatsApp.
+            </p>
+
+            <a
+              href="https://wa.me/5531973126616"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              💬 Abrir WhatsApp
+
+            </a>
+
+          </section>
+
+
+        </aside>
 
       </div>
 
-      <div class='rf-copy'>
-        © <span id='rfYear'></span> Rádio Futebol FM — Todos os direitos reservados.
-      </div>
+    </main>
 
-    </div>
 
-  </footer>
+    <!-- RODAPÉ -->
+    <footer>
 
-</div>
+      <p>
+        © <span id="year"></span>
+        Rádio Futebol FM.
+        Todos os direitos reservados.
+      </p>
 
-<!-- WHATSAPP -->
+      <p>
+        Futebol • Notícias • Informação • Rádio
+      </p>
 
-<a
-  class='rf-whatsapp'
-  href='https://wa.me/5531973126616'
-  rel='noopener noreferrer'
-  target='_blank'
-  aria-label='WhatsApp Rádio Futebol FM'>
-  ☎
-</a>
+    </footer>
 
-<!-- ÁREA BLOGGER NECESSÁRIA -->
 
-<b:section id='blogger-widgets'
-             class='blogger-widgets'
-             maxwidgets='1'
-             showaddelement='no'>
-</b:section>
+    <!-- WHATSAPP FLUTUANTE -->
+    <a
+      href="https://wa.me/5531973126616"
+      class="whatsapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="WhatsApp">
 
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
+      💬
 
-<script type='text/javascript'>
-//<![CDATA[
+    </a>
 
-/* =========================================
-   TEMA AUTOMÁTICO
-   06:00 - 17:59 = PRETO
-   18:00 - 05:59 = BRANCO
-========================================= */
+  </div>
 
-function rfApplyTheme(){
 
-  var now = new Date();
-  var hour = now.getHours();
-
-  if(hour >= 6 && hour < 18){
-    document.body.classList.remove('rf-light');
-  }else{
-    document.body.classList.add('rf-light');
-  }
-
-}
-
-rfApplyTheme();
-
-setInterval(rfApplyTheme,60000);
-
-
-/* =========================================
-   RELÓGIO
-========================================= */
-
-function rfUpdateClock(){
-
-  var clock = document.getElementById('rfClock');
-  var year = document.getElementById('rfYear');
-
-  var now = new Date();
-
-  var days = [
-    'Domingo',
-    'Segunda-feira',
-    'Terça-feira',
-    'Quarta-feira',
-    'Quinta-feira',
-    'Sexta-feira',
-    'Sábado'
-  ];
-
-  var date = now.toLocaleDateString('pt-BR');
-
-  var time = now.toLocaleTimeString('pt-BR',{
-    hour:'2-digit',
-    minute:'2-digit',
-    second:'2-digit'
-  });
-
-  if(clock){
-    clock.textContent =
-      time + ' • ' +
-      days[now.getDay()] +
-      ' - ' +
-      date;
-  }
-
-  if(year){
-    year.textContent = now.getFullYear();
-  }
-
-}
-
-rfUpdateClock();
-setInterval(rfUpdateClock,1000);
-
-
-/* =========================================
-   CLIMA — BETIM MG
-========================================= */
-
-async function rfLoadWeather(){
-
-  var weather =
-    document.getElementById('rfWeather');
-
-  try{
-
-    var url =
-      'https://api.open-meteo.com/v1/forecast' +
-      '?latitude=-19.9678' +
-      '&longitude=-44.1983' +
-      '&current=temperature_2m,relative_humidity_2m' +
-      '&timezone=America%2FSao_Paulo';
-
-    var response =
-      await fetch(url,{cache:'no-store'});
-
-    if(!response.ok){
-      throw new Error('weather');
-    }
-
-    var data =
-      await response.json();
-
-    var current =
-      data.current || {};
-
-    if(weather){
-
-      weather.textContent =
-        '🌤️ Betim - MG ' +
-        (current.temperature_2m ?? '--') +
-        ' °C • Umidade ' +
-        (current.relative_humidity_2m ?? '--') +
-        '%';
-
-    }
-
-  }catch(error){
-
-    if(weather){
-      weather.textContent =
-        '🌤️ Betim - MG';
-    }
-
-  }
-
-}
-
-rfLoadWeather();
-setInterval(rfLoadWeather,600000);
-
-
-/* =========================================
-   NOTÍCIAS G1
-========================================= */
-
-var rfFeeds = [
-
-  'https://g1.globo.com/dynamo/rss2.xml',
-
-  'https://g1.globo.com/dynamo/brasil/rss2.xml',
-
-  'https://g1.globo.com/dynamo/minas-gerais/rss2.xml',
-
-  'https://g1.globo.com/dynamo/mundo/rss2.xml',
-
-  'https://g1.globo.com/dynamo/economia/rss2.xml',
-
-  'https://g1.globo.com/dynamo/tecnologia/rss2.xml',
-
-  'https://g1.globo.com/dynamo/educacao/rss2.xml',
-
-  'https://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml',
-
-  'https://g1.globo.com/dynamo/natureza/rss2.xml',
-
-  'https://g1.globo.com/dynamo/musica/rss2.xml'
-
-];
-
-var rfNews = [];
-var rfCurrent = 0;
-var rfTimer = null;
-
-
-function rfCleanText(value){
-
-  var div =
-    document.createElement('div');
-
-  div.innerHTML =
-    value || '';
-
-  return (
-    div.textContent ||
-    div.innerText ||
-    ''
-  )
-  .replace(/\s+/g,' ')
-  .trim();
-
-}
-
-
-function rfGetImage(item){
-
-  if(
-    item &&
-    item.enclosure &&
-    item.enclosure.link
-  ){
-
-    return item.enclosure.link;
-
-  }
-
-  if(item && item.thumbnail){
-
-    return item.thumbnail;
-
-  }
-
-  var html =
-    item && item.description
-      ? item.description
-      : '';
-
-  var match =
-    html.match(
-      /<img[^>]+src=["']([^"']+)["']/i
-    );
-
-  return match
-    ? match[1]
-    : 'https://via.placeholder.com/900x500/222/ffffff?text=Radio+Futebol+FM';
-
-}
-
-
-async function rfFetchFeed(feed){
-
-  try{
-
-    var api =
-      'https://api.rss2json.com/v1/api.json?rss_url=' +
-      encodeURIComponent(feed);
-
-    var response =
-      await fetch(api,{
-        cache:'no-store'
-      });
-
-    if(!response.ok){
-      return [];
-    }
-
-    var data =
-      await response.json();
-
-    return Array.isArray(data.items)
-      ? data.items
-      : [];
-
-  }catch(error){
-
-    return [];
-
-  }
-
-}
-
-
-async function rfLoadNews(){
-
-  var slider =
-    document.getElementById('rfNewsSlider');
-
-  try{
-
-    var batches =
-      await Promise.all(
-        rfFeeds.map(rfFetchFeed)
-      );
-
-    var map =
-      new Map();
-
-    batches
-      .flat()
-      .forEach(function(item){
-
-        var link =
-          item.link || '';
-
-        var title =
-          rfCleanText(item.title);
-
-        if(
-          !link ||
-          !title ||
-          map.has(link)
-        ){
-
-          return;
-
-        }
-
-        map.set(link,{
-
-          title:title,
-
-          description:
-            rfCleanText(
-              item.description ||
-              item.content
-            ).slice(0,260),
-
-          link:link,
-
-          image:
-            rfGetImage(item),
-
-          date:
-            item.pubDate || ''
-
-        });
-
-      });
-
-    rfNews =
-      Array.from(map.values())
-      .sort(function(a,b){
-
-        var da =
-          new Date(a.date).getTime() || 0;
-
-        var db =
-          new Date(b.date).getTime() || 0;
-
-        return db - da;
-
-      })
-      .slice(0,30);
-
-    rfCurrent = 0;
-
-    rfRenderNews();
-
-  }catch(error){
-
-    if(slider){
-
-      slider.innerHTML =
-        '<div class="rf-slide active">' +
-        '<div class="rf-slide-content">' +
-        '<h3>Notícias temporariamente indisponíveis</h3>' +
-        '<p>Tente novamente em alguns minutos.</p>' +
-        '</div>' +
-        '</div>';
-
-    }
-
-  }
-
-}
-
-
-function rfRenderNews(){
-
-  var slider =
-    document.getElementById('rfNewsSlider');
-
-  var dots =
-    document.getElementById('rfDots');
-
-  if(!slider || !dots){
-    return;
-  }
-
-  if(!rfNews.length){
-
-    slider.innerHTML =
-      '<div class="rf-slide active">' +
-      '<div class="rf-slide-content">' +
-      '<h3>Nenhuma notícia disponível</h3>' +
-      '<p>Volte novamente em alguns minutos.</p>' +
-      '</div>' +
-      '</div>';
-
-    dots.innerHTML = '';
-
-    return;
-
-  }
-
-  slider.innerHTML =
-    rfNews.map(function(item,index){
-
-      var safeImage =
-        String(item.image || '')
-        .replace(/"/g,'&quot;');
-
-      var safeTitle =
-        String(item.title || '')
-        .replace(/"/g,'&quot;');
-
-      return (
-
-        '<article class="rf-slide ' +
-        (index === rfCurrent ? 'active' : '') +
-        '">' +
-
-        '<img ' +
-        'class="rf-slide-image" ' +
-        'src="' + safeImage + '" ' +
-        'alt="' + safeTitle + '" ' +
-        'loading="' +
-        (index === 0 ? 'eager' : 'lazy') +
-        '" ' +
-        'onerror="this.src=\'https://via.placeholder.com/900x500/222/ffffff?text=Radio+Futebol+FM\'">' +
-
-        '<div class="rf-slide-content">' +
-
-        '<h3>' +
-        item.title +
-        '</h3>' +
-
-        '<p>' +
-        (
-          item.description ||
-          'Confira a notícia completa na publicação original.'
-        ) +
-        '</p>' +
-
-        '<a ' +
-        'class="rf-news-link" ' +
-        'href="' + item.link + '" ' +
-        'target="_blank" ' +
-        'rel="noopener noreferrer">' +
-        'Ler notícia original' +
-        '</a>' +
-
-        '</div>' +
-
-        '</article>'
-
-      );
-
-    }).join('');
-
-
-  dots.innerHTML =
-    rfNews.map(function(_,index){
-
-      return (
-
-        '<button ' +
-        'class="rf-dot ' +
-        (index === rfCurrent ? 'active' : '') +
-        '" ' +
-        'type="button" ' +
-        'aria-label="Notícia ' +
-        (index + 1) +
-        '" ' +
-        'onclick="rfGoTo(' +
-        index +
-        ')">' +
-        '</button>'
-
-      );
-
-    }).join('');
-
-}
-
-
-function rfGoTo(index){
-
-  if(!rfNews.length){
-    return;
-  }
-
-  rfCurrent =
-    (index + rfNews.length) %
-    rfNews.length;
-
-  rfRenderNews();
-
-}
-
-
-function rfNext(){
-
-  rfGoTo(rfCurrent + 1);
-
-}
-
-
-function rfPrev(){
-
-  rfGoTo(rfCurrent - 1);
-
-}
-
-
-var nextButton =
-  document.getElementById('rfNext');
-
-var prevButton =
-  document.getElementById('rfPrev');
-
-
-if(nextButton){
-
-  nextButton.addEventListener(
-    'click',
-    rfNext
-  );
-
-}
-
-
-if(prevButton){
-
-  prevButton.addEventListener(
-    'click',
-    rfPrev
-  );
-
-}
-
-
-function rfStartSlider(){
-
-  clearInterval(rfTimer);
-
-  rfTimer =
-    setInterval(
-      rfNext,
-      30000
-    );
-
-}
-
-
-rfLoadNews()
-.then(rfStartSlider);
-
-setInterval(
-  rfLoadNews,
-  300000
-);
-
-
-//]]>
-</script>
+  <!-- JavaScript principal já existente -->
+  <script src="app.js"></script>
 
 </body>
 </html>
