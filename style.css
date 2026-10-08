@@ -1,78 +1,18 @@
 radiofutebolfm
 ├── README.md
 ├── index.html
-<style>
-  /* ===== PORTAL EM TELA LARGA ===== */
+* {
+  box-sizing: border-box;
+}
 
-  .site {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  main {
-    width: 100% !important;
-    max-width: none !important;
-    float: none !important;
-    padding: 24px !important;
-  }
-
-  .portal-grid {
-    width: 100% !important;
-    max-width: none !important;
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 340px !important;
-    gap: 24px !important;
-  }
-
-  .portal-main {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  .portal-sidebar {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  /* player + AO VIVO */
-  .hero-player {
-    width: 100% !important;
-    grid-template-columns: minmax(0, 1fr) 320px !important;
-  }
-
-  /* notícias grandes */
-  .portal-section,
-  .portal-card,
-  .rf-ad-section {
-    width: 100% !important;
-  }
-
-  @media (max-width: 1000px) {
-
-    .portal-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    .hero-player {
-      grid-template-columns: 1fr !important;
-    }
-
-  }
-
-  @media (max-width: 600px) {
-
-    main {
-      padding: 10px !important;
-    }
-
-    .portal-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-  }
-</style>
-    right: 10px;
-    bottom: 10px;
-  }
+body {
+  margin: 0;
+  background: #111;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
 }
