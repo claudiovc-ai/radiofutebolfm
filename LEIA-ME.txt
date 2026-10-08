@@ -1,0 +1,40 @@
+RÁDIO FUTEBOL FM — PACOTE GITHUB PAGES
+
+Domínio:
+https://radiofutebolfm.online/
+
+Arquivos principais:
+- index.html
+- style.css
+- app.js
+- futebol.html
+- servicos.html
+- quem-somos.html
+- privacidade.html
+- termos.html
+- contato.html
+- ads.txt
+- robots.txt
+- sitemap.xml
+- CNAME
+
+Preservado:
+- Player XCast
+- Relógio
+- Clima de Betim-MG
+- Slider automático de notícias
+- Futebol
+- YouTube como link
+- Google Play/RadiosNet
+- Formulário de contato
+- WhatsApp
+- anúncios existentes
+- Google Analytics 4
+- AdSense Auto Ads
+- SEO básico
+- páginas institucionais
+- versão responsiva
+
+IMPORTANTE:
+Este pacote é para GitHub Pages e não deve ser colocado no Blogger como XML.
+Não desligue o Blogger antes de testar o domínio no GitHub Pages.

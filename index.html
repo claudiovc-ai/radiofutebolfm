@@ -1,34 +1,197 @@
-<style>
-.site {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  box-shadow: none !important;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rádio Futebol FM - Futebol, notícias e informação em tempo real</title>
+<meta name="description" content="Rádio Futebol FM - Futebol, notícias, informação, rádio ao vivo e entretenimento em tempo real.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="author" content="Rádio Futebol FM">
+<meta name="theme-color" content="#d90000">
+<link rel="canonical" href="https://radiofutebolfm.online/">
+<meta name="google-adsense-account" content="ca-pub-7528769790239988">
 
-main {
-  width: 100% !important;
-  padding: 20px !important;
-}
+<!-- Google AdSense - Auto Ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988" crossorigin="anonymous"></script>
 
-.portal-grid {
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 320px !important;
-  gap: 24px !important;
-}
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FNGX30KP27"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-FNGX30KP27');
+</script>
 
-.portal-main {
-  min-width: 0 !important;
-}
+<meta property="og:site_name" content="Rádio Futebol FM">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rádio Futebol FM - Futebol, notícias e informação em tempo real">
+<meta property="og:description" content="Futebol, notícias, informação e rádio ao vivo.">
+<meta property="og:url" content="https://radiofutebolfm.online/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
 
-.portal-sidebar {
-  min-width: 0 !important;
-}
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-@media (max-width: 1000px) {
-  .portal-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-</style>
+<div class="rf-topo">
+  <div class="rf-topo-interno">
+    <div class="rf-ticker">🎙️ Rádio Futebol FM — futebol, notícias e informação em tempo real</div>
+    <div class="rf-relogio" id="rf-relogio">--:--:--</div>
+  </div>
+</div>
+
+<header class="rf-header">
+  <div class="rf-header-interno">
+    <div class="rf-titulo">
+      <h1>Rádio Futebol FM</h1>
+      <p>Futebol, notícias e informação em tempo real</p>
+    </div>
+    <div class="rf-clima">
+      <span class="rf-clima-icone" id="rf-icone-clima">🌤️</span>
+      <div>
+        <strong>Betim - MG</strong>
+        <small id="rf-temperatura">Carregando...</small>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="rf-menu" aria-label="Menu principal">
+  <div class="rf-menu-interno">
+    <a href="index.html">Início</a>
+    <a href="#radio">Rádio Ao Vivo</a>
+    <a href="#noticias">Notícias</a>
+    <a href="futebol.html">Futebol</a>
+    <a href="servicos.html">Serviços</a>
+    <a href="quem-somos.html">Quem Somos</a>
+    <a href="privacidade.html">Política de Privacidade</a>
+    <a href="#youtube">YouTube</a>
+    <a href="contato.html">Contato</a>
+  </div>
+</nav>
+
+<main class="rf-container">
+  <div class="rf-grid">
+    <div>
+
+      <section class="rf-card rf-player" id="radio">
+        <iframe allow="autoplay" loading="eager"
+          src="https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///"
+          title="Player Rádio Futebol FM"></iframe>
+      </section>
+
+      <section class="rf-card" id="noticias">
+        <h2>Últimas Notícias</h2>
+        <div class="rf-slide" id="rf-news-slider">
+          <div class="rf-status">Carregando notícias...</div>
+        </div>
+        <p class="rf-nota-fonte">As notícias são apresentadas como chamadas/resumos e direcionam para a publicação original.</p>
+      </section>
+
+      <section class="rf-card" id="futebol">
+        <h2>Futebol</h2>
+        <div class="rf-pontos">
+          <div class="rf-ponto"><strong>⚽ Notícias</strong><span>Informação e novidades do futebol.</span></div>
+          <div class="rf-ponto"><strong>🏆 Campeonatos</strong><span>Acompanhe os principais campeonatos.</span></div>
+          <div class="rf-ponto"><strong>📻 Rádio</strong><span>Ouça a Rádio Futebol FM ao vivo.</span></div>
+        </div>
+        <a class="rf-botao" href="futebol.html">Ver página de futebol</a>
+      </section>
+
+      <section class="rf-card" id="youtube">
+        <h2>YouTube</h2>
+        <a class="rf-youtube-link" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">▶️ Visite nosso YouTube</a>
+      </section>
+
+      <section class="rf-card rf-publicidade">
+        <h2>Publicidade</h2>
+        <div class="rf-ad-300">
+          <script>
+          atOptions={'key':'c1528e379b1c65940841f09cdca36025','format':'iframe','height':250,'width':300,'params':{}};
+          </script>
+          <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
+        </div>
+      </section>
+
+      <section class="rf-card rf-publicidade">
+        <div class="rf-ad-160">
+          <script>
+          atOptions={'key':'041b44eddbbb93f0618bf618ee24bada','format':'iframe','height':300,'width':160,'params':{}};
+          </script>
+          <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
+        </div>
+      </section>
+
+      <section class="rf-card rf-play">
+        <a href="https://play.google.com/store/apps/details?id=br.com.radios.radiosmobile.radiosnet&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+           rel="noopener noreferrer" target="_blank">
+          <img alt="Disponível no Google Play" height="45" width="142"
+               src="https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png">
+        </a>
+      </section>
+
+      <section class="rf-card rf-contato" id="contato">
+        <h2>Contato</h2>
+        <form action="https://formsubmit.co/radiofutebolfm@gmail.com" method="POST">
+          <input name="_subject" type="hidden" value="Contato - Rádio Futebol FM">
+          <input name="_captcha" type="hidden" value="false">
+          <input name="_template" type="hidden" value="table">
+          <input name="_next" type="hidden" value="https://radiofutebolfm.online/">
+          <label for="rf-nome">Nome</label>
+          <input id="rf-nome" name="nome" required type="text">
+          <label for="rf-email">E-mail</label>
+          <input id="rf-email" name="email" required type="email">
+          <label for="rf-mensagem">Mensagem</label>
+          <textarea id="rf-mensagem" name="mensagem" required></textarea>
+          <button type="submit">Enviar mensagem</button>
+        </form>
+      </section>
+
+      <section class="rf-card rf-publicidade">
+        <div class="rf-ad-300">
+          <script>
+          atOptions={'key':'c1528e379b1c65940841f09cdca36025','format':'iframe','height':250,'width':300,'params':{}};
+          </script>
+          <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
+        </div>
+      </section>
+
+      <section class="rf-card rf-publicidade">
+        <div class="rf-ad-160">
+          <script>
+          atOptions={'key':'041b44eddbbb93f0618bf618ee24bada','format':'iframe','height':300,'width':160,'params':{}};
+          </script>
+          <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
+        </div>
+      </section>
+
+    </div>
+
+    <aside>
+      <section class="rf-card">
+        <h2>Rádio Futebol FM</h2>
+        <p>Futebol, notícias e informação em tempo real.</p>
+        <p><a class="rf-botao" href="servicos.html">Conheça nossos serviços</a></p>
+        <p><a class="rf-link" href="quem-somos.html">Quem Somos</a></p>
+        <p><a class="rf-link" href="privacidade.html">Privacidade</a></p>
+        <p><a class="rf-link" href="termos.html">Termos de Uso</a></p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<footer class="rf-footer">
+  <div class="rf-footer-interno">
+    <p><strong>Rádio Futebol FM</strong></p>
+    <p>Futebol, notícias e informação em tempo real.</p>
+    <p>© <span id="rf-ano"></span> Rádio Futebol FM. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<a aria-label="Falar pelo WhatsApp" class="rf-whatsapp" href="https://wa.me/5531973126616" rel="noopener noreferrer" target="_blank">☎</a>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://radiofutebolfm.online/</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
+<url><loc>https://radiofutebolfm.online/</loc></url>
+<url><loc>https://radiofutebolfm.online/futebol.html</loc></url>
+<url><loc>https://radiofutebolfm.online/servicos.html</loc></url>
+<url><loc>https://radiofutebolfm.online/quem-somos.html</loc></url>
+<url><loc>https://radiofutebolfm.online/privacidade.html</loc></url>
+<url><loc>https://radiofutebolfm.online/termos.html</loc></url>
+<url><loc>https://radiofutebolfm.online/contato.html</loc></url>
 </urlset>
