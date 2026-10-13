@@ -1,40 +1,24 @@
-/* ==========================================
-   RÁDIO FUTEBOL FM — APP.JS
-   Relógio • Clima • Notícias automáticas
-   ========================================== */
 (function () {
   "use strict";
-
-  var temporizadorNoticias = null;
-  var temporizadorClima = null;
-  var indiceSlide = 0;
-  var carregandoNoticias = false;
-
-  var FALLBACK_IMAGEM =
-    "https://placehold.co/900x310/111111/ffffff?text=Radio+Futebol+FM";
-
-  /* RELÓGIO E ANO */
 
   function atualizarRelogio() {
     var relogio = document.getElementById("rf-relogio");
     var ano = document.getElementById("rf-ano");
 
     if (relogio) {
-      relogio.textContent = new Date().toLocaleTimeString("pt-BR", {
-        timeZone: "America/Sao_Paulo",
-        hour12: false
-      });
+      relogio.textContent = new Date().toLocaleTimeString(
+        "pt-BR",
+        {
+          timeZone: "America/Sao_Paulo",
+          hour12: false
+        }
+      );
     }
 
     if (ano) {
       ano.textContent = new Date().getFullYear();
     }
   }
-
-  atualizarRelogio();
-  window.setInterval(atualizarRelogio, 1000);
-
-  /* CLIMA DE BETIM */
 
   function climaTexto(codigo) {
     if (codigo === 0) return ["☀️", "Céu limpo"];
@@ -55,6 +39,8 @@
     var icone = document.getElementById("rf-icone-clima");
     var temperatura = document.getElementById("rf-temperatura");
 
+    if (!icone && !temperatura) return;
+
     try {
       var url =
         "https://api.open-meteo.com/v1/forecast" +
@@ -62,7 +48,7 @@
         "&current=temperature_2m,weather_code" +
         "&timezone=America%2FSao_Paulo";
 
-      var resposta = await fetch(url);
+      var resposta = await fetch(url, { cache: "no-store" });
 
       if (!resposta.ok) {
         throw new Error("Clima indisponível");
@@ -70,16 +56,15 @@
 
       var dados = await resposta.json();
 
-      if (
-        !dados.current ||
-        typeof dados.current.temperature_2m !== "number"
-      ) {
-        throw new Error("Dados de clima inválidos");
+      if (!dados.current) {
+        throw new Error("Dados indisponíveis");
       }
 
       var info = climaTexto(dados.current.weather_code);
 
-      if (icone) icone.textContent = info[0];
+      if (icone) {
+        icone.textContent = info[0];
+      }
 
       if (temperatura) {
         temperatura.textContent =
@@ -87,234 +72,15 @@
           Math.round(dados.current.temperature_2m) + "°C";
       }
     } catch (erro) {
-      /* Não interrompe as outras funções do site. */
-      if (temperatura && !temperatura.textContent.trim()) {
+      if (temperatura) {
         temperatura.textContent = "Clima temporariamente indisponível";
       }
     }
   }
 
+  atualizarRelogio();
+  window.setInterval(atualizarRelogio, 1000);
+
   carregarClima();
-  temporizadorClima = window.setInterval(carregarClima, 10 * 60 * 1000);
-
-  /* NOTÍCIAS DE FUTEBOL */
-
-  var slider = document.getElementById("rf-news-slider");
-  var botaoAtualizar = document.getElementById("rf-news-refresh");
-
-  if (!slider) return;
-
-  var feed =
-    "https://news.google.com/rss/search?q=futebol%20Brasil" +
-    "&hl=pt-BR&gl=BR&ceid=BR:pt-419";
-
-  function textoSimples(valor) {
-    var temporario = document.createElement("div");
-    temporario.textContent = String(valor || "");
-
-    return (temporario.textContent || "")
-      .replace(/<[^>]*>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function extrairResumo(valor) {
-    var temporario = document.createElement("div");
-    temporario.innerHTML = String(valor || "");
-
-    return (temporario.textContent || temporario.innerText || "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .slice(0, 180);
-  }
-
-  function urlValida(valor) {
-    try {
-      var url = new URL(valor);
-      return url.protocol === "https:" || url.protocol === "http:";
-    } catch (erro) {
-      return false;
-    }
-  }
-
-  function limparSlider() {
-    while (slider.firstChild) {
-      slider.removeChild(slider.firstChild);
-    }
-  }
-
-  function mostrarStatus(mensagem) {
-    limparSlider();
-
-    var status = document.createElement("div");
-    status.className = "rf-status";
-    status.textContent = mensagem;
-
-    slider.appendChild(status);
-  }
-
-  function criarSlide(item, indice) {
-    var artigo = document.createElement("article");
-    artigo.className = "rf-slide-item" + (indice === 0 ? " ativo" : "");
-
-    var titulo = textoSimples(item.title) || "Notícia de futebol";
-    var destino = urlValida(item.link) ? item.link : "";
-    var resumo = extrairResumo(item.description || item.content || "");
-
-    var img = document.createElement("img");
-    img.src = FALLBACK_IMAGEM;
-    img.alt = "Rádio Futebol FM";
-    img.loading = indice === 0 ? "eager" : "lazy";
-    img.width = 900;
-    img.height = 310;
-    img.decoding = "async";
-
-    /*
-      O feed do Google Notícias nem sempre fornece uma imagem
-      direta. A imagem padrão evita espaços quebrados.
-    */
-    img.onerror = function () {
-      this.onerror = null;
-      this.src = FALLBACK_IMAGEM;
-    };
-
-    var info = document.createElement("div");
-    info.className = "rf-slide-info";
-
-    var h3 = document.createElement("h3");
-    h3.textContent = titulo;
-
-    var p = document.createElement("p");
-    p.textContent = resumo ||
-      "Acesse a publicação original para conferir os detalhes.";
-
-    info.appendChild(h3);
-    info.appendChild(p);
-
-    if (destino) {
-      var link = document.createElement("a");
-      link.className = "rf-slide-link";
-      link.href = destino;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Ler notícia original";
-      info.appendChild(link);
-    }
-
-    artigo.appendChild(img);
-    artigo.appendChild(info);
-
-    return artigo;
-  }
-
-  function iniciarCarrossel() {
-    if (temporizadorNoticias) {
-      window.clearInterval(temporizadorNoticias);
-      temporizadorNoticias = null;
-    }
-
-    var slides = slider.querySelectorAll(".rf-slide-item");
-    indiceSlide = 0;
-
-    if (!slides.length) return;
-
-    slides.forEach(function (slide, indice) {
-      slide.classList.toggle("ativo", indice === 0);
-    });
-
-    if (slides.length < 2) return;
-
-    temporizadorNoticias = window.setInterval(function () {
-      slides[indiceSlide].classList.remove("ativo");
-      indiceSlide = (indiceSlide + 1) % slides.length;
-      slides[indiceSlide].classList.add("ativo");
-    }, 6000);
-  }
-
-  async function buscarNoticias() {
-    if (carregandoNoticias) return;
-
-    carregandoNoticias = true;
-
-    if (botaoAtualizar) {
-      botaoAtualizar.disabled = true;
-      botaoAtualizar.textContent = "Atualizando...";
-    }
-
-    try {
-      var endpoint =
-        "https://api.rss2json.com/v1/api.json?rss_url=" +
-        encodeURIComponent(feed);
-
-      var resposta = await fetch(endpoint, { cache: "no-store" });
-
-      if (!resposta.ok) {
-        throw new Error("Serviço de notícias indisponível");
-      }
-
-      var dados = await resposta.json();
-
-      if (
-        dados.status !== "ok" ||
-        !Array.isArray(dados.items) ||
-        !dados.items.length
-      ) {
-        throw new Error("Nenhuma notícia disponível");
-      }
-
-      var noticias = dados.items.filter(function (item) {
-        return item && item.title && urlValida(item.link);
-      }).slice(0, 8);
-
-      if (!noticias.length) {
-        throw new Error("Nenhuma notícia válida");
-      }
-
-      limparSlider();
-
-      noticias.forEach(function (item, indice) {
-        slider.appendChild(criarSlide(item, indice));
-      });
-
-      iniciarCarrossel();
-
-      var atualizado = document.createElement("p");
-      atualizado.className = "rf-news-meta";
-      atualizado.textContent =
-        "Última consulta: " +
-        new Date().toLocaleTimeString("pt-BR", {
-          timeZone: "America/Sao_Paulo"
-        });
-
-      slider.appendChild(atualizado);
-    } catch (erro) {
-      /*
-        Se já houver notícias, mantém o conteúdo existente.
-        Se for a primeira tentativa, mostra uma mensagem simples.
-      */
-      if (!slider.querySelector(".rf-slide-item")) {
-        mostrarStatus(
-          "As notícias estão temporariamente indisponíveis. " +
-          "Tente novamente em alguns minutos."
-        );
-      }
-    } finally {
-      carregandoNoticias = false;
-
-      if (botaoAtualizar) {
-        botaoAtualizar.disabled = false;
-        botaoAtualizar.textContent = "Atualizar notícias";
-      }
-    }
-  }
-
-  if (botaoAtualizar) {
-    botaoAtualizar.addEventListener("click", buscarNoticias);
-  }
-
-  buscarNoticias();
-
-  /* Atualização das notícias a cada 15 minutos. */
-  window.setInterval(buscarNoticias, 15 * 60 * 1000);
-
+  window.setInterval(carregarClima, 10 * 60 * 1000);
 })();
