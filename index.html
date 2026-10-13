@@ -1,573 +1,320 @@
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rádio Futebol FM - Futebol, notícias e informação em tempo real</title>
-<meta name="description" content="Rádio Futebol FM - Futebol, notícias, informação, rádio ao vivo e entretenimento em tempo real.">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<meta name="author" content="Rádio Futebol FM">
-<meta name="theme-color" content="#d90000">
-<link rel="canonical" href="https://radiofutebolfm.online/">
-<meta name="google-adsense-account" content="ca-pub-7528769790239988">
-
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988" crossorigin="anonymous"></script>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FNGX30KP27"></script>
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-gtag('config','G-FNGX30KP27');
-</script>
-
-<meta property="og:site_name" content="Rádio Futebol FM">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rádio Futebol FM - Futebol, notícias e informação em tempo real">
-<meta property="og:description" content="Futebol, notícias, informação e rádio ao vivo.">
-<meta property="og:url" content="https://radiofutebolfm.online/">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-.rf-news-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 16px;
-}
-.rf-news-item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  background: #fff;
-  color: #222;
-  min-width: 0;
-}
-.rf-news-item h3 {
-  font-size: 17px;
-  line-height: 1.45;
-  margin: 0;
-}
-.rf-news-item p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0;
-  color: #555;
-}
-.rf-news-item a {
-  color: #c90000;
-  font-weight: 700;
-  text-decoration: none;
-}
-.rf-news-item a:hover {
-  text-decoration: underline;
-}
-.rf-news-meta {
-  font-size: 12px;
-  color: #666;
-}
-.rf-news-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-.rf-news-controls button {
-  padding: 10px 14px;
-  border: 0;
-  border-radius: 8px;
-  background: #c90000;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
-.rf-news-controls button:disabled {
-  opacity: .6;
-  cursor: wait;
-}
-.rf-news-error {
-  padding: 14px;
-  border-radius: 8px;
-  background: #fff4f4;
-  color: #8a0000;
-  line-height: 1.5;
-}
-.rf-nota-fonte {
-  font-size: 12px;
-  line-height: 1.5;
-  color: #666;
-}
-</style>
-</head>
-
-<body>
-
-<div class="rf-topo">
-  <div class="rf-topo-interno">
-    <div class="rf-ticker">🎙️ Rádio Futebol FM — futebol, notícias e informação em tempo real</div>
-    <div class="rf-relogio" id="rf-relogio">--:--:--</div>
-  </div>
-</div>
-
-<header class="rf-header">
-  <div class="rf-header-interno">
-    <div class="rf-titulo">
-      <h1>Rádio Futebol FM</h1>
-      <p>Futebol, notícias e informação em tempo real</p>
-    </div>
-    <div class="rf-clima">
-      <span class="rf-clima-icone" id="rf-icone-clima">🌤️</span>
-      <div>
-        <strong>Betim - MG</strong>
-        <small id="rf-temperatura">Carregando...</small>
-      </div>
-    </div>
-  </div>
-</header>
-
-<nav class="rf-menu" aria-label="Menu principal">
-  <div class="rf-menu-interno">
-    <a href="index.html">Início</a>
-    <a href="#radio">Rádio Ao Vivo</a>
-    <a href="#noticias">Notícias</a>
-    <a href="futebol.html">Futebol</a>
-    <a href="servicos.html">Serviços</a>
-    <a href="quem-somos.html">Quem Somos</a>
-    <a href="privacidade.html">Política de Privacidade</a>
-    <a href="#youtube">YouTube</a>
-    <a href="contato.html">Contato</a>
-  </div>
-</nav>
-
-<main class="rf-container">
-  <div class="rf-grid">
-    <div>
-
-      <!-- PLAYER DA RÁDIO: PRESERVADO -->
-      <section class="rf-card rf-player" id="radio">
-        <iframe
-          allow="autoplay"
-          loading="eager"
-          src="https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///"
-          title="Player Rádio Futebol FM"
-          style="width:100%;border:0;min-height:120px"
-        ></iframe>
-      </section>
-
-      <!-- NOTÍCIAS AUTOMÁTICAS -->
-      <section class="rf-card" id="noticias">
-        <h2>Últimas Notícias de Futebol</h2>
-
-        <div id="rf-news-slider" aria-live="polite">
-          <p class="rf-status">Carregando notícias de futebol...</p>
-        </div>
-
-        <div class="rf-news-controls">
-          <button type="button" id="rf-news-refresh">Atualizar notícias</button>
-        </div>
-
-        <p class="rf-nota-fonte">
-          Notícias exibidas como títulos e breves chamadas, com links para as publicações originais.
-          Os conteúdos pertencem aos respetivos veículos de comunicação.
-        </p>
-      </section>
-
-      <section class="rf-card" id="futebol">
-        <h2>Futebol</h2>
-        <div class="rf-pontos">
-          <div class="rf-ponto">
-            <strong>⚽ Notícias</strong>
-            <span>Informação e novidades do futebol.</span>
-          </div>
-          <div class="rf-ponto">
-            <strong>🏆 Campeonatos</strong>
-            <span>Acompanhe os principais campeonatos.</span>
-          </div>
-          <div class="rf-ponto">
-            <strong>📻 Rádio</strong>
-            <span>Ouça a Rádio Futebol FM ao vivo.</span>
-          </div>
-        </div>
-        <a class="rf-botao" href="futebol.html">Ver página de futebol</a>
-      </section>
-
-      <section class="rf-card" id="youtube">
-        <h2>YouTube</h2>
-        <a class="rf-youtube-link"
-           href="https://www.youtube.com/"
-           rel="noopener noreferrer"
-           target="_blank">▶️ Visite nosso YouTube</a>
-      </section>
-
-      <!-- PUBLICIDADE EXISTENTE -->
-      <section class="rf-card rf-publicidade">
-        <h2>Publicidade</h2>
-        <div class="rf-ad-300">
-          <script>
-          var atOptions = {
-            key: 'c1528e379b1c65940841f09cdca36025',
-            format: 'iframe',
-            height: 250,
-            width: 300,
-            params: {}
-          };
-          </script>
-          <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
-        </div>
-      </section>
-
-      <section class="rf-card rf-publicidade">
-        <div class="rf-ad-160">
-          <script>
-          var atOptions = {
-            key: '041b44eddbbb93f0618bf618ee24bada',
-            format: 'iframe',
-            height: 300,
-            width: 160,
-            params: {}
-          };
-          </script>
-          <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
-        </div>
-      </section>
-
-      <section class="rf-card rf-play">
-        <a href="https://play.google.com/store/apps/details?id=br.com.radios.radiosmobile.radiosnet&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
-           rel="noopener noreferrer" target="_blank">
-          <img
-            alt="Disponível no Google Play"
-            height="45"
-            width="142"
-            src="https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png">
-        </a>
-      </section>
-
-      <section class="rf-card rf-contato" id="contato">
-        <h2>Contato</h2>
-        <form action="https://formsubmit.co/radiofutebolfm@gmail.com" method="POST">
-          <input name="_subject" type="hidden" value="Contato - Rádio Futebol FM">
-          <input name="_captcha" type="hidden" value="false">
-          <input name="_template" type="hidden" value="table">
-          <input name="_next" type="hidden" value="https://radiofutebolfm.online/">
-
-          <label for="rf-nome">Nome</label>
-          <input id="rf-nome" name="nome" required type="text">
-
-          <label for="rf-email">E-mail</label>
-          <input id="rf-email" name="email" required type="email">
-
-          <label for="rf-mensagem">Mensagem</label>
-          <textarea id="rf-mensagem" name="mensagem" required></textarea>
-
-          <button type="submit">Enviar mensagem</button>
-        </form>
-      </section>
-
-      <section class="rf-card rf-publicidade">
-        <div class="rf-ad-300">
-          <script>
-          var atOptions = {
-            key: 'c1528e379b1c65940841f09cdca36025',
-            format: 'iframe',
-            height: 250,
-            width: 300,
-            params: {}
-          };
-          </script>
-          <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
-        </div>
-      </section>
-
-      <section class="rf-card rf-publicidade">
-        <div class="rf-ad-160">
-          <script>
-          var atOptions = {
-            key: '041b44eddbbb93f0618bf618ee24bada',
-            format: 'iframe',
-            height: 300,
-            width: 160,
-            params: {}
-          };
-          </script>
-          <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
-        </div>
-      </section>
-
-    </div>
-
-    <aside>
-      <section class="rf-card">
-        <h2>Rádio Futebol FM</h2>
-        <p>Futebol, notícias e informação em tempo real.</p>
-        <p><a class="rf-botao" href="servicos.html">Conheça nossos serviços</a></p>
-        <p><a class="rf-link" href="quem-somos.html">Quem Somos</a></p>
-        <p><a class="rf-link" href="privacidade.html">Privacidade</a></p>
-        <p><a class="rf-link" href="termos.html">Termos de Uso</a></p>
-      </section>
-    </aside>
-  </div>
-</main>
-
-<footer class="rf-footer">
-  <div class="rf-footer-interno">
-    <p><strong>Rádio Futebol FM</strong></p>
-    <p>Futebol, notícias e informação em tempo real.</p>
-    <p>© <span id="rf-ano"></span> Rádio Futebol FM. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
-<a aria-label="Falar pelo WhatsApp"
-   class="rf-whatsapp"
-   href="https://wa.me/5531973126616"
-   rel="noopener noreferrer"
-   target="_blank">☎</a>
-
-<!-- APP EXISTENTE: mantém relógio e clima se já estiverem configurados -->
-<script src="app.js"></script>
-
-<!-- CARREGADOR DE NOTÍCIAS COM TENTATIVA ALTERNATIVA -->
-<script>
+/* ==========================================
+   RÁDIO FUTEBOL FM — APP.JS
+   Relógio • Clima • Notícias automáticas
+   ========================================== */
 (function () {
-  'use strict';
+  "use strict";
 
-  var area = document.getElementById('rf-news-slider');
-  var botao = document.getElementById('rf-news-refresh');
-  if (!area) return;
+  var temporizadorNoticias = null;
+  var temporizadorClima = null;
+  var indiceSlide = 0;
+  var carregandoNoticias = false;
 
-  var carregando = false;
-  var ultimaAtualizacao = 0;
+  var FALLBACK_IMAGEM =
+    "https://placehold.co/900x310/111111/ffffff?text=Radio+Futebol+FM";
 
-  var rssUrl =
-    'https://news.google.com/rss/search?q=futebol%20Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419';
+  /* RELÓGIO E ANO */
 
-  function limpar(elemento) {
-    while (elemento.firstChild) {
-      elemento.removeChild(elemento.firstChild);
-    }
-  }
-
-  function textoSeguro(valor) {
-    return String(valor || '').replace(/\s+/g, ' ').trim();
-  }
-
-  function dataLegivel(valor) {
-    if (!valor) return 'Data não informada';
-    var data = new Date(valor);
-    if (isNaN(data.getTime())) return 'Data não informada';
-    return data.toLocaleString('pt-BR', {
-      dateStyle: 'short',
-      timeStyle: 'short'
-    });
-  }
-
-  function mostrarMensagem(mensagem) {
-    limpar(area);
-    var p = document.createElement('p');
-    p.className = 'rf-news-error';
-    p.textContent = mensagem;
-    area.appendChild(p);
-  }
-
-  function renderizar(items) {
-    var noticias = (items || []).filter(function (item) {
-      return item && item.title && item.link;
-    }).slice(0, 10);
-
-    if (!noticias.length) {
-      throw new Error('Nenhuma notícia disponível.');
-    }
-
-    limpar(area);
-
-    var lista = document.createElement('div');
-    lista.className = 'rf-news-list';
-
-    noticias.forEach(function (item) {
-      var artigo = document.createElement('article');
-      artigo.className = 'rf-news-item';
-
-      var titulo = document.createElement('h3');
-      var link = document.createElement('a');
-      link.href = item.link;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = textoSeguro(item.title);
-      titulo.appendChild(link);
-
-      var descricao = document.createElement('p');
-      var resumo = textoSeguro(
-        item.description || item.content || item.summary || ''
-      );
-
-      // Remove etiquetas de marcação se vierem no resumo.
-      var temporario = document.createElement('div');
-      temporario.innerHTML = resumo;
-      resumo = textoSeguro(temporario.textContent || temporario.innerText || '');
-
-      descricao.textContent = resumo
-        ? resumo.slice(0, 240) + (resumo.length > 240 ? '…' : '')
-        : 'Leia a publicação original para conferir os detalhes desta notícia.';
-
-      var meta = document.createElement('div');
-      meta.className = 'rf-news-meta';
-      meta.textContent =
-        textoSeguro(item.author || item.source || 'Fonte original') +
-        ' · ' + dataLegivel(item.pubDate || item.published || item.date);
-
-      var ler = document.createElement('a');
-      ler.href = item.link;
-      ler.target = '_blank';
-      ler.rel = 'noopener noreferrer';
-      ler.textContent = 'Ler na fonte original →';
-
-      artigo.appendChild(titulo);
-      artigo.appendChild(descricao);
-      artigo.appendChild(meta);
-      artigo.appendChild(ler);
-      lista.appendChild(artigo);
-    });
-
-    area.appendChild(lista);
-
-    var atualizacao = document.createElement('p');
-    atualizacao.className = 'rf-news-meta';
-    atualizacao.textContent =
-      'Última consulta: ' + new Date().toLocaleString('pt-BR');
-    area.appendChild(atualizacao);
-
-    ultimaAtualizacao = Date.now();
-  }
-
-  async function buscarRSS2JSON() {
-    var endpoint =
-      'https://api.rss2json.com/v1/api.json?rss_url=' +
-      encodeURIComponent(rssUrl);
-
-    var resposta = await fetch(endpoint, { cache: 'no-store' });
-    if (!resposta.ok) throw new Error('Serviço de notícias indisponível.');
-
-    var dados = await resposta.json();
-    if (dados.status !== 'ok' || !Array.isArray(dados.items)) {
-      throw new Error('O feed não retornou notícias.');
-    }
-
-    return dados.items.map(function (item) {
-      return {
-        title: item.title,
-        link: item.link,
-        description: item.description || item.content || '',
-        pubDate: item.pubDate,
-        author: item.author || (dados.feed && dados.feed.title) || 'Notícias'
-      };
-    });
-  }
-
-  async function buscarAlternativa() {
-    var endpoint =
-      'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl);
-
-    var resposta = await fetch(endpoint, { cache: 'no-store' });
-    if (!resposta.ok) throw new Error('A fonte alternativa falhou.');
-
-    var xmlTexto = await resposta.text();
-    var documento = new DOMParser().parseFromString(xmlTexto, 'text/xml');
-
-    if (documento.querySelector('parsererror')) {
-      throw new Error('Não foi possível interpretar o feed.');
-    }
-
-    return Array.from(documento.querySelectorAll('item')).map(function (item) {
-      var titulo = item.querySelector('title');
-      var link = item.querySelector('link');
-      var descricao = item.querySelector('description');
-      var data = item.querySelector('pubDate');
-      var fonte = item.querySelector('source');
-
-      return {
-        title: titulo ? titulo.textContent : '',
-        link: link ? link.textContent : '',
-        description: descricao ? descricao.textContent : '',
-        pubDate: data ? data.textContent : '',
-        author: fonte ? fonte.textContent : 'Notícias'
-      };
-    });
-  }
-
-  async function carregarNoticias() {
-    if (carregando) return;
-    carregando = true;
-
-    if (botao) {
-      botao.disabled = true;
-      botao.textContent = 'Carregando...';
-    }
-
-    if (!ultimaAtualizacao) {
-      mostrarMensagem('Buscando as últimas notícias de futebol...');
-    }
-
-    try {
-      var noticias;
-
-      try {
-        noticias = await buscarRSS2JSON();
-      } catch (erroPrincipal) {
-        noticias = await buscarAlternativa();
-      }
-
-      renderizar(noticias);
-    } catch (erro) {
-      mostrarMensagem(
-        'Não foi possível carregar as notícias agora. ' +
-        'Tente novamente em alguns minutos ou use o botão "Atualizar notícias".'
-      );
-    } finally {
-      carregando = false;
-      if (botao) {
-        botao.disabled = false;
-        botao.textContent = 'Atualizar notícias';
-      }
-    }
-  }
-
-  if (botao) {
-    botao.addEventListener('click', carregarNoticias);
-  }
-
-  carregarNoticias();
-
-  // Atualiza a lista automaticamente a cada 15 minutos.
-  window.setInterval(carregarNoticias, 15 * 60 * 1000);
-})();
-</script>
-
-<!-- Relógio e ano como segurança caso o app.js não os atualize -->
-<script>
-(function () {
   function atualizarRelogio() {
-    var el = document.getElementById('rf-relogio');
-    if (el) {
-      el.textContent = new Date().toLocaleTimeString('pt-BR', {
-        timeZone: 'America/Sao_Paulo'
+    var relogio = document.getElementById("rf-relogio");
+    var ano = document.getElementById("rf-ano");
+
+    if (relogio) {
+      relogio.textContent = new Date().toLocaleTimeString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+        hour12: false
       });
     }
 
-    var ano = document.getElementById('rf-ano');
-    if (ano) ano.textContent = new Date().getFullYear();
+    if (ano) {
+      ano.textContent = new Date().getFullYear();
+    }
   }
 
   atualizarRelogio();
   window.setInterval(atualizarRelogio, 1000);
-})();
-</script>
 
-</body>
-</html>
+  /* CLIMA DE BETIM */
+
+  function climaTexto(codigo) {
+    if (codigo === 0) return ["☀️", "Céu limpo"];
+    if (codigo === 1) return ["🌤️", "Predominantemente limpo"];
+    if (codigo === 2) return ["⛅", "Parcialmente nublado"];
+    if (codigo === 3) return ["☁️", "Nublado"];
+    if (codigo === 45 || codigo === 48) return ["🌫️", "Neblina"];
+    if (codigo >= 51 && codigo <= 57) return ["🌦️", "Garoa"];
+    if (codigo >= 61 && codigo <= 67) return ["🌧️", "Chuva"];
+    if (codigo >= 71 && codigo <= 77) return ["🌨️", "Neve"];
+    if (codigo >= 80 && codigo <= 82) return ["🌧️", "Pancadas de chuva"];
+    if (codigo >= 85 && codigo <= 86) return ["🌨️", "Pancadas de neve"];
+    if (codigo >= 95) return ["⛈️", "Trovoadas"];
+    return ["🌤️", "Tempo variável"];
+  }
+
+  async function carregarClima() {
+    var icone = document.getElementById("rf-icone-clima");
+    var temperatura = document.getElementById("rf-temperatura");
+
+    try {
+      var url =
+        "https://api.open-meteo.com/v1/forecast" +
+        "?latitude=-19.9678&longitude=-44.1983" +
+        "&current=temperature_2m,weather_code" +
+        "&timezone=America%2FSao_Paulo";
+
+      var resposta = await fetch(url);
+
+      if (!resposta.ok) {
+        throw new Error("Clima indisponível");
+      }
+
+      var dados = await resposta.json();
+
+      if (
+        !dados.current ||
+        typeof dados.current.temperature_2m !== "number"
+      ) {
+        throw new Error("Dados de clima inválidos");
+      }
+
+      var info = climaTexto(dados.current.weather_code);
+
+      if (icone) icone.textContent = info[0];
+
+      if (temperatura) {
+        temperatura.textContent =
+          info[1] + " • " +
+          Math.round(dados.current.temperature_2m) + "°C";
+      }
+    } catch (erro) {
+      /* Não interrompe as outras funções do site. */
+      if (temperatura && !temperatura.textContent.trim()) {
+        temperatura.textContent = "Clima temporariamente indisponível";
+      }
+    }
+  }
+
+  carregarClima();
+  temporizadorClima = window.setInterval(carregarClima, 10 * 60 * 1000);
+
+  /* NOTÍCIAS DE FUTEBOL */
+
+  var slider = document.getElementById("rf-news-slider");
+  var botaoAtualizar = document.getElementById("rf-news-refresh");
+
+  if (!slider) return;
+
+  var feed =
+    "https://news.google.com/rss/search?q=futebol%20Brasil" +
+    "&hl=pt-BR&gl=BR&ceid=BR:pt-419";
+
+  function textoSimples(valor) {
+    var temporario = document.createElement("div");
+    temporario.textContent = String(valor || "");
+
+    return (temporario.textContent || "")
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function extrairResumo(valor) {
+    var temporario = document.createElement("div");
+    temporario.innerHTML = String(valor || "");
+
+    return (temporario.textContent || temporario.innerText || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 180);
+  }
+
+  function urlValida(valor) {
+    try {
+      var url = new URL(valor);
+      return url.protocol === "https:" || url.protocol === "http:";
+    } catch (erro) {
+      return false;
+    }
+  }
+
+  function limparSlider() {
+    while (slider.firstChild) {
+      slider.removeChild(slider.firstChild);
+    }
+  }
+
+  function mostrarStatus(mensagem) {
+    limparSlider();
+
+    var status = document.createElement("div");
+    status.className = "rf-status";
+    status.textContent = mensagem;
+
+    slider.appendChild(status);
+  }
+
+  function criarSlide(item, indice) {
+    var artigo = document.createElement("article");
+    artigo.className = "rf-slide-item" + (indice === 0 ? " ativo" : "");
+
+    var titulo = textoSimples(item.title) || "Notícia de futebol";
+    var destino = urlValida(item.link) ? item.link : "";
+    var resumo = extrairResumo(item.description || item.content || "");
+
+    var img = document.createElement("img");
+    img.src = FALLBACK_IMAGEM;
+    img.alt = "Rádio Futebol FM";
+    img.loading = indice === 0 ? "eager" : "lazy";
+    img.width = 900;
+    img.height = 310;
+    img.decoding = "async";
+
+    /*
+      O feed do Google Notícias nem sempre fornece uma imagem
+      direta. A imagem padrão evita espaços quebrados.
+    */
+    img.onerror = function () {
+      this.onerror = null;
+      this.src = FALLBACK_IMAGEM;
+    };
+
+    var info = document.createElement("div");
+    info.className = "rf-slide-info";
+
+    var h3 = document.createElement("h3");
+    h3.textContent = titulo;
+
+    var p = document.createElement("p");
+    p.textContent = resumo ||
+      "Acesse a publicação original para conferir os detalhes.";
+
+    info.appendChild(h3);
+    info.appendChild(p);
+
+    if (destino) {
+      var link = document.createElement("a");
+      link.className = "rf-slide-link";
+      link.href = destino;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Ler notícia original";
+      info.appendChild(link);
+    }
+
+    artigo.appendChild(img);
+    artigo.appendChild(info);
+
+    return artigo;
+  }
+
+  function iniciarCarrossel() {
+    if (temporizadorNoticias) {
+      window.clearInterval(temporizadorNoticias);
+      temporizadorNoticias = null;
+    }
+
+    var slides = slider.querySelectorAll(".rf-slide-item");
+    indiceSlide = 0;
+
+    if (!slides.length) return;
+
+    slides.forEach(function (slide, indice) {
+      slide.classList.toggle("ativo", indice === 0);
+    });
+
+    if (slides.length < 2) return;
+
+    temporizadorNoticias = window.setInterval(function () {
+      slides[indiceSlide].classList.remove("ativo");
+      indiceSlide = (indiceSlide + 1) % slides.length;
+      slides[indiceSlide].classList.add("ativo");
+    }, 6000);
+  }
+
+  async function buscarNoticias() {
+    if (carregandoNoticias) return;
+
+    carregandoNoticias = true;
+
+    if (botaoAtualizar) {
+      botaoAtualizar.disabled = true;
+      botaoAtualizar.textContent = "Atualizando...";
+    }
+
+    try {
+      var endpoint =
+        "https://api.rss2json.com/v1/api.json?rss_url=" +
+        encodeURIComponent(feed);
+
+      var resposta = await fetch(endpoint, { cache: "no-store" });
+
+      if (!resposta.ok) {
+        throw new Error("Serviço de notícias indisponível");
+      }
+
+      var dados = await resposta.json();
+
+      if (
+        dados.status !== "ok" ||
+        !Array.isArray(dados.items) ||
+        !dados.items.length
+      ) {
+        throw new Error("Nenhuma notícia disponível");
+      }
+
+      var noticias = dados.items.filter(function (item) {
+        return item && item.title && urlValida(item.link);
+      }).slice(0, 8);
+
+      if (!noticias.length) {
+        throw new Error("Nenhuma notícia válida");
+      }
+
+      limparSlider();
+
+      noticias.forEach(function (item, indice) {
+        slider.appendChild(criarSlide(item, indice));
+      });
+
+      iniciarCarrossel();
+
+      var atualizado = document.createElement("p");
+      atualizado.className = "rf-news-meta";
+      atualizado.textContent =
+        "Última consulta: " +
+        new Date().toLocaleTimeString("pt-BR", {
+          timeZone: "America/Sao_Paulo"
+        });
+
+      slider.appendChild(atualizado);
+    } catch (erro) {
+      /*
+        Se já houver notícias, mantém o conteúdo existente.
+        Se for a primeira tentativa, mostra uma mensagem simples.
+      */
+      if (!slider.querySelector(".rf-slide-item")) {
+        mostrarStatus(
+          "As notícias estão temporariamente indisponíveis. " +
+          "Tente novamente em alguns minutos."
+        );
+      }
+    } finally {
+      carregandoNoticias = false;
+
+      if (botaoAtualizar) {
+        botaoAtualizar.disabled = false;
+        botaoAtualizar.textContent = "Atualizar notícias";
+      }
+    }
+  }
+
+  if (botaoAtualizar) {
+    botaoAtualizar.addEventListener("click", buscarNoticias);
+  }
+
+  buscarNoticias();
+
+  /* Atualização das notícias a cada 15 minutos. */
+  window.setInterval(buscarNoticias, 15 * 60 * 1000);
+
+})();
