@@ -56,3 +56,235 @@ textarea::placeholder {
 .rf-menu {
   background-color: var(--rf-menu);
 }
+
+/* Rádio Futebol FM: tema automático pelo horário */
+:root {
+  --rf-fundo: #000000;
+  --rf-cartao: #111111;
+  --rf-texto: #ffffff;
+  --rf-texto-secundario: #dddddd;
+  --rf-borda: #333333;
+  --rf-menu: #c90000;
+}
+
+/* Fundo preto e letras brancas durante o dia */
+body {
+  background: var(--rf-fundo);
+  color: var(--rf-texto);
+  transition: background .3s ease, color .3s ease;
+}
+
+.rf-card,
+.rf-news-item,
+.rf-ponto,
+.rf-header,
+.rf-container aside > section,
+.rf-footer {
+  background-color: var(--rf-cartao);
+  color: var(--rf-texto);
+  border-color: var(--rf-borda);
+}
+
+.rf-card p,
+.rf-ponto span,
+.rf-news-item p,
+.rf-news-meta,
+.rf-nota-fonte,
+.rf-titulo h1,
+.rf-titulo p,
+.rf-card h2,
+.rf-card h3,
+.rf-news-item h3 {
+  color: var(--rf-texto);
+}
+
+input,
+textarea,
+select {
+  background: var(--rf-cartao);
+  color: var(--rf-texto);
+  border: 1px solid var(--rf-borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--rf-texto-secundario);
+}
+
+.rf-menu {
+  background-color: var(--rf-menu);
+}
+
+/* Rádio Futebol FM: tema automático pelo horário */
+:root {
+  --rf-fundo: #000000;
+  --rf-cartao: #111111;
+  --rf-texto: #ffffff;
+  --rf-texto-secundario: #dddddd;
+  --rf-borda: #333333;
+  --rf-menu: #c90000;
+}
+
+/* Fundo preto e letras brancas durante o dia */
+body {
+  background: var(--rf-fundo);
+  color: var(--rf-texto);
+  transition: background .3s ease, color .3s ease;
+}
+
+.rf-card,
+.rf-news-item,
+.rf-ponto,
+.rf-header,
+.rf-container aside > section,
+.rf-footer {
+  background-color: var(--rf-cartao);
+  color: var(--rf-texto);
+  border-color: var(--rf-borda);
+}
+
+.rf-card p,
+.rf-ponto span,
+.rf-news-item p,
+.rf-news-meta,
+.rf-nota-fonte,
+.rf-titulo h1,
+.rf-titulo p,
+.rf-card h2,
+.rf-card h3,
+.rf-news-item h3 {
+  color: var(--rf-texto);
+}
+
+input,
+textarea,
+select {
+  background: var(--rf-cartao);
+  color: var(--rf-texto);
+  border: 1px solid var(--rf-borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--rf-texto-secundario);
+}
+
+.rf-menu {
+  background-color: var(--rf-menu);
+}
+
+/* Rádio Futebol FM: tema automático pelo horário */
+:root {
+  --rf-fundo: #000000;
+  --rf-cartao: #111111;
+  --rf-texto: #ffffff;
+  --rf-texto-secundario: #dddddd;
+  --rf-borda: #333333;
+  --rf-menu: #c90000;
+}
+
+/* Fundo preto e letras brancas durante o dia */
+body {
+  background: var(--rf-fundo);
+  color: var(--rf-texto);
+  transition: background .3s ease, color .3s ease;
+}
+
+.rf-card,
+.rf-news-item,
+.rf-ponto,
+.rf-header,
+.rf-container aside > section,
+.rf-footer {
+  background-color: var(--rf-cartao);
+  color: var(--rf-texto);
+  border-color: var(--rf-borda);
+}
+
+.rf-card p,
+.rf-ponto span,
+.rf-news-item p,
+.rf-news-meta,
+.rf-nota-fonte,
+.rf-titulo h1,
+.rf-titulo p,
+.rf-card h2,
+.rf-card h3,
+.rf-news-item h3 {
+  color: var(--rf-texto);
+}
+
+input,
+textarea,
+select {
+  background: var(--rf-cartao);
+  color: var(--rf-texto);
+  border: 1px solid var(--rf-borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--rf-texto-secundario);
+}
+
+.rf-menu {
+  background-color: var(--rf-menu);
+}
+
+/* Rádio Futebol FM: tema automático pelo horário */
+:root {
+  --rf-fundo: #000000;
+  --rf-cartao: #111111;
+  --rf-texto: #ffffff;
+  --rf-texto-secundario: #dddddd;
+  --rf-borda: #333333;
+  --rf-menu: #c90000;
+}
+
+/* Fundo preto e letras brancas durante o dia */
+body {
+  background: var(--rf-fundo);
+  color: var(--rf-texto);
+  transition: background .3s ease, color .3s ease;
+}
+
+.rf-card,
+.rf-news-item,
+.rf-ponto,
+.rf-header,
+.rf-container aside > section,
+.rf-footer {
+  background-color: var(--rf-cartao);
+  color: var(--rf-texto);
+  border-color: var(--rf-borda);
+}
+
+.rf-card p,
+.rf-ponto span,
+.rf-news-item p,
+.rf-news-meta,
+.rf-nota-fonte,
+.rf-titulo h1,
+.rf-titulo p,
+.rf-card h2,
+.rf-card h3,
+.rf-news-item h3 {
+  color: var(--rf-texto);
+}
+
+input,
+textarea,
+select {
+  background: var(--rf-cartao);
+  color: var(--rf-texto);
+  border: 1px solid var(--rf-borda);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--rf-texto-secundario);
+}
+
+.rf-menu {
+  background-color: var(--rf-menu);
+}
