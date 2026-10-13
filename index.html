@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -11,7 +12,7 @@
 <link rel="canonical" href="https://radiofutebolfm.online/">
 <meta name="google-adsense-account" content="ca-pub-7528769790239988">
 
-<!-- Google AdSense - Auto Ads -->
+<!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988" crossorigin="anonymous"></script>
 
 <!-- Google Analytics 4 -->
@@ -32,7 +33,81 @@ gtag('config','G-FNGX30KP27');
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+.rf-news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 16px;
+}
+.rf-news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  color: #222;
+  min-width: 0;
+}
+.rf-news-item h3 {
+  font-size: 17px;
+  line-height: 1.45;
+  margin: 0;
+}
+.rf-news-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  color: #555;
+}
+.rf-news-item a {
+  color: #c90000;
+  font-weight: 700;
+  text-decoration: none;
+}
+.rf-news-item a:hover {
+  text-decoration: underline;
+}
+.rf-news-meta {
+  font-size: 12px;
+  color: #666;
+}
+.rf-news-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.rf-news-controls button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #c90000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.rf-news-controls button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+.rf-news-error {
+  padding: 14px;
+  border-radius: 8px;
+  background: #fff4f4;
+  color: #8a0000;
+  line-height: 1.5;
+}
+.rf-nota-fonte {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #666;
+}
+</style>
 </head>
+
 <body>
 
 <div class="rf-topo">
@@ -76,40 +151,74 @@ gtag('config','G-FNGX30KP27');
   <div class="rf-grid">
     <div>
 
+      <!-- PLAYER DA RÁDIO: PRESERVADO -->
       <section class="rf-card rf-player" id="radio">
-        <iframe allow="autoplay" loading="eager"
+        <iframe
+          allow="autoplay"
+          loading="eager"
           src="https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///"
-          title="Player Rádio Futebol FM"></iframe>
+          title="Player Rádio Futebol FM"
+          style="width:100%;border:0;min-height:120px"
+        ></iframe>
       </section>
 
+      <!-- NOTÍCIAS AUTOMÁTICAS -->
       <section class="rf-card" id="noticias">
-        <h2>Últimas Notícias</h2>
-        <div class="rf-slide" id="rf-news-slider">
-          <div class="rf-status">Carregando notícias...</div>
+        <h2>Últimas Notícias de Futebol</h2>
+
+        <div id="rf-news-slider" aria-live="polite">
+          <p class="rf-status">Carregando notícias de futebol...</p>
         </div>
-        <p class="rf-nota-fonte">As notícias são apresentadas como chamadas/resumos e direcionam para a publicação original.</p>
+
+        <div class="rf-news-controls">
+          <button type="button" id="rf-news-refresh">Atualizar notícias</button>
+        </div>
+
+        <p class="rf-nota-fonte">
+          Notícias exibidas como títulos e breves chamadas, com links para as publicações originais.
+          Os conteúdos pertencem aos respetivos veículos de comunicação.
+        </p>
       </section>
 
       <section class="rf-card" id="futebol">
         <h2>Futebol</h2>
         <div class="rf-pontos">
-          <div class="rf-ponto"><strong>⚽ Notícias</strong><span>Informação e novidades do futebol.</span></div>
-          <div class="rf-ponto"><strong>🏆 Campeonatos</strong><span>Acompanhe os principais campeonatos.</span></div>
-          <div class="rf-ponto"><strong>📻 Rádio</strong><span>Ouça a Rádio Futebol FM ao vivo.</span></div>
+          <div class="rf-ponto">
+            <strong>⚽ Notícias</strong>
+            <span>Informação e novidades do futebol.</span>
+          </div>
+          <div class="rf-ponto">
+            <strong>🏆 Campeonatos</strong>
+            <span>Acompanhe os principais campeonatos.</span>
+          </div>
+          <div class="rf-ponto">
+            <strong>📻 Rádio</strong>
+            <span>Ouça a Rádio Futebol FM ao vivo.</span>
+          </div>
         </div>
         <a class="rf-botao" href="futebol.html">Ver página de futebol</a>
       </section>
 
       <section class="rf-card" id="youtube">
         <h2>YouTube</h2>
-        <a class="rf-youtube-link" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">▶️ Visite nosso YouTube</a>
+        <a class="rf-youtube-link"
+           href="https://www.youtube.com/"
+           rel="noopener noreferrer"
+           target="_blank">▶️ Visite nosso YouTube</a>
       </section>
 
+      <!-- PUBLICIDADE EXISTENTE -->
       <section class="rf-card rf-publicidade">
         <h2>Publicidade</h2>
         <div class="rf-ad-300">
           <script>
-          atOptions={'key':'c1528e379b1c65940841f09cdca36025','format':'iframe','height':250,'width':300,'params':{}};
+          var atOptions = {
+            key: 'c1528e379b1c65940841f09cdca36025',
+            format: 'iframe',
+            height: 250,
+            width: 300,
+            params: {}
+          };
           </script>
           <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
         </div>
@@ -118,7 +227,13 @@ gtag('config','G-FNGX30KP27');
       <section class="rf-card rf-publicidade">
         <div class="rf-ad-160">
           <script>
-          atOptions={'key':'041b44eddbbb93f0618bf618ee24bada','format':'iframe','height':300,'width':160,'params':{}};
+          var atOptions = {
+            key: '041b44eddbbb93f0618bf618ee24bada',
+            format: 'iframe',
+            height: 300,
+            width: 160,
+            params: {}
+          };
           </script>
           <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
         </div>
@@ -127,8 +242,11 @@ gtag('config','G-FNGX30KP27');
       <section class="rf-card rf-play">
         <a href="https://play.google.com/store/apps/details?id=br.com.radios.radiosmobile.radiosnet&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
            rel="noopener noreferrer" target="_blank">
-          <img alt="Disponível no Google Play" height="45" width="142"
-               src="https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png">
+          <img
+            alt="Disponível no Google Play"
+            height="45"
+            width="142"
+            src="https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png">
         </a>
       </section>
 
@@ -139,12 +257,16 @@ gtag('config','G-FNGX30KP27');
           <input name="_captcha" type="hidden" value="false">
           <input name="_template" type="hidden" value="table">
           <input name="_next" type="hidden" value="https://radiofutebolfm.online/">
+
           <label for="rf-nome">Nome</label>
           <input id="rf-nome" name="nome" required type="text">
+
           <label for="rf-email">E-mail</label>
           <input id="rf-email" name="email" required type="email">
+
           <label for="rf-mensagem">Mensagem</label>
           <textarea id="rf-mensagem" name="mensagem" required></textarea>
+
           <button type="submit">Enviar mensagem</button>
         </form>
       </section>
@@ -152,7 +274,13 @@ gtag('config','G-FNGX30KP27');
       <section class="rf-card rf-publicidade">
         <div class="rf-ad-300">
           <script>
-          atOptions={'key':'c1528e379b1c65940841f09cdca36025','format':'iframe','height':250,'width':300,'params':{}};
+          var atOptions = {
+            key: 'c1528e379b1c65940841f09cdca36025',
+            format: 'iframe',
+            height: 250,
+            width: 300,
+            params: {}
+          };
           </script>
           <script src="https://ripenhopperwitty.com/c1528e379b1c65940841f09cdca36025/invoke.js"></script>
         </div>
@@ -161,7 +289,13 @@ gtag('config','G-FNGX30KP27');
       <section class="rf-card rf-publicidade">
         <div class="rf-ad-160">
           <script>
-          atOptions={'key':'041b44eddbbb93f0618bf618ee24bada','format':'iframe','height':300,'width':160,'params':{}};
+          var atOptions = {
+            key: '041b44eddbbb93f0618bf618ee24bada',
+            format: 'iframe',
+            height: 300,
+            width: 160,
+            params: {}
+          };
           </script>
           <script src="https://ripenhopperwitty.com/041b44eddbbb93f0618bf618ee24bada/invoke.js"></script>
         </div>
@@ -190,8 +324,250 @@ gtag('config','G-FNGX30KP27');
   </div>
 </footer>
 
-<a aria-label="Falar pelo WhatsApp" class="rf-whatsapp" href="https://wa.me/5531973126616" rel="noopener noreferrer" target="_blank">☎</a>
+<a aria-label="Falar pelo WhatsApp"
+   class="rf-whatsapp"
+   href="https://wa.me/5531973126616"
+   rel="noopener noreferrer"
+   target="_blank">☎</a>
 
+<!-- APP EXISTENTE: mantém relógio e clima se já estiverem configurados -->
 <script src="app.js"></script>
+
+<!-- CARREGADOR DE NOTÍCIAS COM TENTATIVA ALTERNATIVA -->
+<script>
+(function () {
+  'use strict';
+
+  var area = document.getElementById('rf-news-slider');
+  var botao = document.getElementById('rf-news-refresh');
+  if (!area) return;
+
+  var carregando = false;
+  var ultimaAtualizacao = 0;
+
+  var rssUrl =
+    'https://news.google.com/rss/search?q=futebol%20Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419';
+
+  function limpar(elemento) {
+    while (elemento.firstChild) {
+      elemento.removeChild(elemento.firstChild);
+    }
+  }
+
+  function textoSeguro(valor) {
+    return String(valor || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function dataLegivel(valor) {
+    if (!valor) return 'Data não informada';
+    var data = new Date(valor);
+    if (isNaN(data.getTime())) return 'Data não informada';
+    return data.toLocaleString('pt-BR', {
+      dateStyle: 'short',
+      timeStyle: 'short'
+    });
+  }
+
+  function mostrarMensagem(mensagem) {
+    limpar(area);
+    var p = document.createElement('p');
+    p.className = 'rf-news-error';
+    p.textContent = mensagem;
+    area.appendChild(p);
+  }
+
+  function renderizar(items) {
+    var noticias = (items || []).filter(function (item) {
+      return item && item.title && item.link;
+    }).slice(0, 10);
+
+    if (!noticias.length) {
+      throw new Error('Nenhuma notícia disponível.');
+    }
+
+    limpar(area);
+
+    var lista = document.createElement('div');
+    lista.className = 'rf-news-list';
+
+    noticias.forEach(function (item) {
+      var artigo = document.createElement('article');
+      artigo.className = 'rf-news-item';
+
+      var titulo = document.createElement('h3');
+      var link = document.createElement('a');
+      link.href = item.link;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = textoSeguro(item.title);
+      titulo.appendChild(link);
+
+      var descricao = document.createElement('p');
+      var resumo = textoSeguro(
+        item.description || item.content || item.summary || ''
+      );
+
+      // Remove etiquetas de marcação se vierem no resumo.
+      var temporario = document.createElement('div');
+      temporario.innerHTML = resumo;
+      resumo = textoSeguro(temporario.textContent || temporario.innerText || '');
+
+      descricao.textContent = resumo
+        ? resumo.slice(0, 240) + (resumo.length > 240 ? '…' : '')
+        : 'Leia a publicação original para conferir os detalhes desta notícia.';
+
+      var meta = document.createElement('div');
+      meta.className = 'rf-news-meta';
+      meta.textContent =
+        textoSeguro(item.author || item.source || 'Fonte original') +
+        ' · ' + dataLegivel(item.pubDate || item.published || item.date);
+
+      var ler = document.createElement('a');
+      ler.href = item.link;
+      ler.target = '_blank';
+      ler.rel = 'noopener noreferrer';
+      ler.textContent = 'Ler na fonte original →';
+
+      artigo.appendChild(titulo);
+      artigo.appendChild(descricao);
+      artigo.appendChild(meta);
+      artigo.appendChild(ler);
+      lista.appendChild(artigo);
+    });
+
+    area.appendChild(lista);
+
+    var atualizacao = document.createElement('p');
+    atualizacao.className = 'rf-news-meta';
+    atualizacao.textContent =
+      'Última consulta: ' + new Date().toLocaleString('pt-BR');
+    area.appendChild(atualizacao);
+
+    ultimaAtualizacao = Date.now();
+  }
+
+  async function buscarRSS2JSON() {
+    var endpoint =
+      'https://api.rss2json.com/v1/api.json?rss_url=' +
+      encodeURIComponent(rssUrl);
+
+    var resposta = await fetch(endpoint, { cache: 'no-store' });
+    if (!resposta.ok) throw new Error('Serviço de notícias indisponível.');
+
+    var dados = await resposta.json();
+    if (dados.status !== 'ok' || !Array.isArray(dados.items)) {
+      throw new Error('O feed não retornou notícias.');
+    }
+
+    return dados.items.map(function (item) {
+      return {
+        title: item.title,
+        link: item.link,
+        description: item.description || item.content || '',
+        pubDate: item.pubDate,
+        author: item.author || (dados.feed && dados.feed.title) || 'Notícias'
+      };
+    });
+  }
+
+  async function buscarAlternativa() {
+    var endpoint =
+      'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl);
+
+    var resposta = await fetch(endpoint, { cache: 'no-store' });
+    if (!resposta.ok) throw new Error('A fonte alternativa falhou.');
+
+    var xmlTexto = await resposta.text();
+    var documento = new DOMParser().parseFromString(xmlTexto, 'text/xml');
+
+    if (documento.querySelector('parsererror')) {
+      throw new Error('Não foi possível interpretar o feed.');
+    }
+
+    return Array.from(documento.querySelectorAll('item')).map(function (item) {
+      var titulo = item.querySelector('title');
+      var link = item.querySelector('link');
+      var descricao = item.querySelector('description');
+      var data = item.querySelector('pubDate');
+      var fonte = item.querySelector('source');
+
+      return {
+        title: titulo ? titulo.textContent : '',
+        link: link ? link.textContent : '',
+        description: descricao ? descricao.textContent : '',
+        pubDate: data ? data.textContent : '',
+        author: fonte ? fonte.textContent : 'Notícias'
+      };
+    });
+  }
+
+  async function carregarNoticias() {
+    if (carregando) return;
+    carregando = true;
+
+    if (botao) {
+      botao.disabled = true;
+      botao.textContent = 'Carregando...';
+    }
+
+    if (!ultimaAtualizacao) {
+      mostrarMensagem('Buscando as últimas notícias de futebol...');
+    }
+
+    try {
+      var noticias;
+
+      try {
+        noticias = await buscarRSS2JSON();
+      } catch (erroPrincipal) {
+        noticias = await buscarAlternativa();
+      }
+
+      renderizar(noticias);
+    } catch (erro) {
+      mostrarMensagem(
+        'Não foi possível carregar as notícias agora. ' +
+        'Tente novamente em alguns minutos ou use o botão "Atualizar notícias".'
+      );
+    } finally {
+      carregando = false;
+      if (botao) {
+        botao.disabled = false;
+        botao.textContent = 'Atualizar notícias';
+      }
+    }
+  }
+
+  if (botao) {
+    botao.addEventListener('click', carregarNoticias);
+  }
+
+  carregarNoticias();
+
+  // Atualiza a lista automaticamente a cada 15 minutos.
+  window.setInterval(carregarNoticias, 15 * 60 * 1000);
+})();
+</script>
+
+<!-- Relógio e ano como segurança caso o app.js não os atualize -->
+<script>
+(function () {
+  function atualizarRelogio() {
+    var el = document.getElementById('rf-relogio');
+    if (el) {
+      el.textContent = new Date().toLocaleTimeString('pt-BR', {
+        timeZone: 'America/Sao_Paulo'
+      });
+    }
+
+    var ano = document.getElementById('rf-ano');
+    if (ano) ano.textContent = new Date().getFullYear();
+  }
+
+  atualizarRelogio();
+  window.setInterval(atualizarRelogio, 1000);
+})();
+</script>
+
 </body>
 </html>
