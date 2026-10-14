@@ -1,0 +1,21 @@
+RÁDIO FUTEBOL FM — PORTAL PRONTO PARA GITHUB PAGES
+
+CORREÇÃO DO ERRO 404:
+O arquivo principal deve ficar na raiz do repositório e se chamar exatamente index.html.
+Este ZIP foi montado com os arquivos diretamente na raiz do ZIP (sem uma pasta envolvendo tudo).
+
+COMO PUBLICAR:
+1. Abra https://github.com/claudiovc-ai/radiofutebolfm
+2. Confirme que está no ramo/branch main.
+3. Faça backup dos arquivos atuais antes de substituir.
+4. Clique em Add file > Upload files.
+5. Extraia este ZIP no computador e selecione TODOS os arquivos de dentro da pasta extraída, incluindo index.html, style.css, app.js, quem-somos.html, privacidade.html, robots.txt e sitemap.xml. Não envie uma pasta que contenha os arquivos dentro dela.
+6. Arraste os arquivos para a página do GitHub e confirme o commit no branch main.
+7. Em Settings > Pages, confira: Deploy from a branch; Branch: main; Folder: /(root). Salve se alterar.
+8. Aguarde alguns minutos e abra https://radiofutebolfm.online/ usando Ctrl+F5.
+
+IMPORTANTE:
+- Não altere os registros DNS para corrigir esse erro 404.
+- O nome precisa ser exatamente index.html, em letras minúsculas.
+- O portal depende de serviços externos para rádio, clima e notícias; eles podem falhar temporariamente.
+- Os arquivos de configuração de domínio/DNS não são modificados por este ZIP.

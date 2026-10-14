@@ -1,86 +1,28 @@
-(function () {
-  "use strict";
-
-  function atualizarRelogio() {
-    var relogio = document.getElementById("rf-relogio");
-    var ano = document.getElementById("rf-ano");
-
-    if (relogio) {
-      relogio.textContent = new Date().toLocaleTimeString(
-        "pt-BR",
-        {
-          timeZone: "America/Sao_Paulo",
-          hour12: false
-        }
-      );
-    }
-
-    if (ano) {
-      ano.textContent = new Date().getFullYear();
-    }
-  }
-
-  function climaTexto(codigo) {
-    if (codigo === 0) return ["☀️", "Céu limpo"];
-    if (codigo === 1) return ["🌤️", "Predominantemente limpo"];
-    if (codigo === 2) return ["⛅", "Parcialmente nublado"];
-    if (codigo === 3) return ["☁️", "Nublado"];
-    if (codigo === 45 || codigo === 48) return ["🌫️", "Neblina"];
-    if (codigo >= 51 && codigo <= 57) return ["🌦️", "Garoa"];
-    if (codigo >= 61 && codigo <= 67) return ["🌧️", "Chuva"];
-    if (codigo >= 71 && codigo <= 77) return ["🌨️", "Neve"];
-    if (codigo >= 80 && codigo <= 82) return ["🌧️", "Pancadas de chuva"];
-    if (codigo >= 85 && codigo <= 86) return ["🌨️", "Pancadas de neve"];
-    if (codigo >= 95) return ["⛈️", "Trovoadas"];
-    return ["🌤️", "Tempo variável"];
-  }
-
-  async function carregarClima() {
-    var icone = document.getElementById("rf-icone-clima");
-    var temperatura = document.getElementById("rf-temperatura");
-
-    if (!icone && !temperatura) return;
-
-    try {
-      var url =
-        "https://api.open-meteo.com/v1/forecast" +
-        "?latitude=-19.9678&longitude=-44.1983" +
-        "&current=temperature_2m,weather_code" +
-        "&timezone=America%2FSao_Paulo";
-
-      var resposta = await fetch(url, { cache: "no-store" });
-
-      if (!resposta.ok) {
-        throw new Error("Clima indisponível");
-      }
-
-      var dados = await resposta.json();
-
-      if (!dados.current) {
-        throw new Error("Dados indisponíveis");
-      }
-
-      var info = climaTexto(dados.current.weather_code);
-
-      if (icone) {
-        icone.textContent = info[0];
-      }
-
-      if (temperatura) {
-        temperatura.textContent =
-          info[1] + " • " +
-          Math.round(dados.current.temperature_2m) + "°C";
-      }
-    } catch (erro) {
-      if (temperatura) {
-        temperatura.textContent = "Clima temporariamente indisponível";
-      }
-    }
-  }
-
-  atualizarRelogio();
-  window.setInterval(atualizarRelogio, 1000);
-
-  carregarClima();
-  window.setInterval(carregarClima, 10 * 60 * 1000);
-})();
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rádio Futebol FM — Futebol, notícias e informação</title>
+<meta name="description" content="Ouça a Rádio Futebol FM ao vivo e acompanhe notícias de futebol, programação e informação.">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#b5121b">
+<link rel="canonical" href="https://radiofutebolfm.online/"><link rel="stylesheet" href="style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FNGX30KP27"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-FNGX30KP27');</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)})(window,document,'script','dataLayer','GTM-NNM9GTR6');</script>
+</head><body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNM9GTR6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="topbar"><div class="container topbar-inner"><span id="rf-relogio">Carregando horário…</span><span class="weather"><span id="rf-icone-clima">🌤️</span><span id="rf-temperatura">Carregando clima de Betim…</span></span></div></div>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="#inicio"><span class="brand-mark">RF</span><span><strong>RÁDIO FUTEBOL FM</strong><small>Futebol, notícias e informação em tempo real.</small></span></a><a class="live-pill" href="#radio">🔴 RÁDIO AO VIVO</a></div></header>
+<nav class="main-nav" aria-label="Menu principal"><div class="container nav-inner"><a href="#inicio">Início</a><a href="#noticias">Notícias</a><a href="#futebol">Futebol</a><a href="#programacao">Programação</a><a href="#youtube">YouTube</a><a href="#contato">Contato</a><a href="quem-somos.html">Quem Somos</a><a href="privacidade.html">Privacidade</a></div></nav>
+<main id="inicio" class="container page-grid"><div class="main-column">
+<section id="radio" class="panel player-panel"><div class="section-heading"><div><span class="eyebrow">SINTONIZE</span><h1>Ouça a Rádio Futebol FM</h1></div><span class="live-label">🔴 AO VIVO</span></div><p class="muted">Futebol, música, notícias e informação para acompanhar você.</p><div class="player-frame"><iframe title="Player da Rádio Futebol FM" src="https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///" loading="lazy" allow="autoplay"></iframe></div></section>
+<section id="noticias" class="panel"><div class="section-heading"><div><span class="eyebrow">ACOMPANHE</span><h2>Últimas notícias de futebol</h2></div><button id="rf-news-refresh" class="button button-outline" type="button">Atualizar notícias</button></div><p class="muted">Manchetes carregadas automaticamente. Abra a fonte original para ler a publicação completa.</p><div id="rf-news-slider" class="news-slider" aria-live="polite"><div class="rf-status">Carregando notícias de futebol…</div></div><p class="source-note">As manchetes e os links levam às fontes originais. O carregamento depende de serviços externos.</p></section>
+<section id="futebol" class="panel"><span class="eyebrow">PAIXÃO NACIONAL</span><h2>Futebol é na Rádio Futebol FM</h2><p>Acompanhe assuntos dos clubes e campeonatos brasileiros. Os links abaixo abrem notícias relacionadas nas fontes externas.</p><div class="topic-grid"><a target="_blank" rel="noopener noreferrer" href="https://news.google.com/rss/search?q=Flamengo&hl=pt-BR&gl=BR&ceid=BR:pt-419">Flamengo ↗</a><a target="_blank" rel="noopener noreferrer" href="https://news.google.com/rss/search?q=Atl%C3%A9tico+Mineiro&hl=pt-BR&gl=BR&ceid=BR:pt-419">Atlético-MG ↗</a><a target="_blank" rel="noopener noreferrer" href="https://news.google.com/rss/search?q=Cruzeiro&hl=pt-BR&gl=BR&ceid=BR:pt-419">Cruzeiro ↗</a><a target="_blank" rel="noopener noreferrer" href="https://news.google.com/rss/search?q=Am%C3%A9rica+Mineiro&hl=pt-BR&gl=BR&ceid=BR:pt-419">América-MG ↗</a><a target="_blank" rel="noopener noreferrer" href="https://news.google.com/rss/search?q=Internacional+futebol&hl=pt-BR&gl=BR&ceid=BR:pt-419">Internacional ↗</a><a target="_blank" rel="noopener noreferrer" href="https://news.google.com/rss/search?q=Brasileir%C3%A3o&hl=pt-BR&gl=BR&ceid=BR:pt-419">Brasileirão ↗</a></div></section>
+<section id="programacao" class="panel"><span class="eyebrow">NA SUA SINTONIA</span><h2>Programação</h2><p>Acompanhe nossa programação com futebol, notícias, informação, música e entretenimento. Horários e programas especiais podem ser divulgados nos canais oficiais.</p><a class="text-link" href="#radio">Ouvir agora →</a></section>
+<section id="youtube" class="panel"><span class="eyebrow">VÍDEOS</span><h2>Rádio Futebol FM no YouTube</h2><div class="video-frame"><iframe title="Vídeo do YouTube" src="https://www.youtube.com/embed/1Y4Yd2DdTPY?si=OThPdNh2rxf4BVHq" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></section>
+<section id="contato" class="panel"><span class="eyebrow">FALE CONOSCO</span><h2>Contato</h2><p>Envie uma mensagem para a equipe da Rádio Futebol FM.</p><form class="contact-form" action="https://formsubmit.co/radiofutebol@gmail.com" method="POST"><input type="hidden" name="_subject" value="Contato - Rádio Futebol FM"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://radiofutebolfm.online/"><label>Seu nome<input name="nome" autocomplete="name" required></label><label>Seu e-mail<input type="email" name="email" autocomplete="email" required></label><label>Sua mensagem<textarea name="mensagem" rows="5" required></textarea></label><button class="button" type="submit">Enviar mensagem</button></form><p class="small muted">O formulário é processado por um serviço externo e pode solicitar confirmação na primeira utilização.</p></section>
+</div><aside class="sidebar"><section class="panel sidebar-live"><span class="eyebrow">NO AR</span><h2>Ouça onde estiver</h2><p>Leve a Rádio Futebol FM com você.</p><a class="button button-full" href="https://player.xcast.com.br/player-topo-html5-2/9116/1/3e1c63/45b143/f5f2f2///" target="_blank" rel="noopener noreferrer">Abrir player da rádio</a></section>
+<section class="ad-box" aria-label="Espaço para publicidade"><span>Publicidade</span><div class="ad-content">Espaço reservado para anúncio</div></section>
+<section class="panel"><span class="eyebrow">APLICATIVO</span><h2>Ouça pelo celular</h2><a href="https://play.google.com/store/apps/details?id=br.com.radios.radiosmobile.radiosnet&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noopener noreferrer"><img class="play-badge" src="https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png" alt="Disponível no Google Play" loading="lazy"></a></section>
+<section class="panel"><span class="eyebrow">REDES SOCIAIS</span><h2>Fique conectado</h2><div class="social-links"><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube ↗</a><a href="https://www.instagram.com/p/DeBYER6FYK2/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://www.facebook.com/groups/1814238939829623" target="_blank" rel="noopener noreferrer">Grupo no Facebook ↗</a></div></section>
+<section class="ad-box" aria-label="Espaço para publicidade"><span>Publicidade</span><div class="ad-content">Espaço reservado para anúncio</div></section><section class="panel"><span class="eyebrow">COMUNIDADE</span><h2>Participe</h2><p>Entre no grupo e acompanhe a comunidade.</p><a class="button button-full" href="https://www.facebook.com/groups/1814238939829623" target="_blank" rel="noopener noreferrer">Acessar grupo</a></section></aside></main>
+<footer class="site-footer"><div class="container footer-inner"><div><strong>RÁDIO FUTEBOL FM</strong><p>Futebol, notícias e informação em tempo real.</p></div><div class="footer-links"><a href="quem-somos.html">Quem Somos</a><a href="privacidade.html">Privacidade</a><a href="#contato">Contato</a></div><small>© <span id="rf-ano"></span> Rádio Futebol FM. Todos os direitos reservados.</small></div></footer>
+<a class="whatsapp-float" href="https://wa.me/5531973126616" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">WhatsApp</a><script src="app.js" defer></script></body></html>

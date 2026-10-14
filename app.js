@@ -1,85 +1,22 @@
-```javascript
-(function () {
+/* Rádio Futebol FM — relógio, clima de Betim e notícias automáticas */
+(function(){
   "use strict";
-
-  function atualizarRelogio() {
-    var relogio = document.getElementById("rf-relogio");
-    var ano = document.getElementById("rf-ano");
-
-    if (relogio) {
-      relogio.textContent = new Date().toLocaleTimeString("pt-BR", {
-        timeZone: "America/Sao_Paulo",
-        hour12: false
-      });
-    }
-
-    if (ano) {
-      ano.textContent = new Date().getFullYear();
-    }
-  }
-
-  function climaTexto(codigo) {
-    if (codigo === 0) return ["☀️", "Céu limpo"];
-    if (codigo === 1) return ["🌤️", "Predominantemente limpo"];
-    if (codigo === 2) return ["⛅", "Parcialmente nublado"];
-    if (codigo === 3) return ["☁️", "Nublado"];
-    if (codigo === 45 || codigo === 48) return ["🌫️", "Neblina"];
-    if (codigo >= 51 && codigo <= 57) return ["🌦️", "Garoa"];
-    if (codigo >= 61 && codigo <= 67) return ["🌧️", "Chuva"];
-    if (codigo >= 71 && codigo <= 77) return ["🌨️", "Neve"];
-    if (codigo >= 80 && codigo <= 82) return ["🌧️", "Pancadas de chuva"];
-    if (codigo >= 85 && codigo <= 86) return ["🌨️", "Pancadas de neve"];
-    if (codigo >= 95) return ["⛈️", "Trovoadas"];
-    return ["🌤️", "Tempo variável"];
-  }
-
-  async function carregarClima() {
-    var icone = document.getElementById("rf-icone-clima");
-    var temperatura = document.getElementById("rf-temperatura");
-
-    if (!icone && !temperatura) return;
-
-    try {
-      var url =
-        "https://api.open-meteo.com/v1/forecast" +
-        "?latitude=-19.9678&longitude=-44.1983" +
-        "&current=temperature_2m,weather_code" +
-        "&timezone=America%2FSao_Paulo";
-
-      var resposta = await fetch(url, { cache: "no-store" });
-
-      if (!resposta.ok) {
-        throw new Error("Clima indisponível");
-      }
-
-      var dados = await resposta.json();
-
-      if (!dados.current) {
-        throw new Error("Dados indisponíveis");
-      }
-
-      var info = climaTexto(dados.current.weather_code);
-
-      if (icone) {
-        icone.textContent = info[0];
-      }
-
-      if (temperatura) {
-        temperatura.textContent =
-          info[1] + " • " +
-          Math.round(dados.current.temperature_2m) + "°C";
-      }
-    } catch (erro) {
-      if (temperatura) {
-        temperatura.textContent = "Clima temporariamente indisponível";
-      }
-    }
-  }
-
-  atualizarRelogio();
-  window.setInterval(atualizarRelogio, 1000);
-
-  carregarClima();
-  window.setInterval(carregarClima, 10 * 60 * 1000);
+  var temporizadorNoticias=null, indiceSlide=0, carregandoNoticias=false;
+  var FALLBACK_IMAGEM="https://placehold.co/900x310/111111/ffffff?text=Radio+Futebol+FM";
+  function atualizarRelogio(){var el=document.getElementById("rf-relogio"),ano=document.getElementById("rf-ano"),agora=new Date();if(el)el.textContent=agora.toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo",weekday:"long",day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false});if(ano)ano.textContent=agora.getFullYear();}
+  atualizarRelogio();window.setInterval(atualizarRelogio,1000);
+  function climaTexto(c){if(c===0)return["☀️","Céu limpo"];if(c===1)return["🌤️","Predominantemente limpo"];if(c===2)return["⛅","Parcialmente nublado"];if(c===3)return["☁️","Nublado"];if(c===45||c===48)return["🌫️","Neblina"];if(c>=51&&c<=57)return["🌦️","Garoa"];if(c>=61&&c<=67)return["🌧️","Chuva"];if(c>=71&&c<=77)return["🌨️","Neve"];if(c>=80&&c<=82)return["🌧️","Pancadas de chuva"];if(c>=85&&c<=86)return["🌨️","Pancadas de neve"];if(c>=95)return["⛈️","Trovoadas"];return["🌤️","Tempo variável"];}
+  async function carregarClima(){var icone=document.getElementById("rf-icone-clima"),temp=document.getElementById("rf-temperatura");try{var url="https://api.open-meteo.com/v1/forecast?latitude=-19.9678&longitude=-44.1983&current=temperature_2m,relative_humidity_2m,weather_code&timezone=America%2FSao_Paulo";var resp=await fetch(url,{cache:"no-store"});if(!resp.ok)throw Error("Clima indisponível");var dados=await resp.json();if(!dados.current||typeof dados.current.temperature_2m!=="number")throw Error("Dados inválidos");var info=climaTexto(Number(dados.current.weather_code));if(icone)icone.textContent=info[0];if(temp)temp.textContent="Betim–MG: "+info[1]+" • "+Math.round(dados.current.temperature_2m)+"°C";}catch(e){if(temp)temp.textContent="Clima de Betim temporariamente indisponível";}}
+  carregarClima();window.setInterval(carregarClima,10*60*1000);
+  var slider=document.getElementById("rf-news-slider"),botao=document.getElementById("rf-news-refresh");if(!slider)return;
+  var feeds=["https://news.google.com/rss/search?q=futebol+Brasil&hl=pt-BR&gl=BR&ceid=BR:pt-419","https://news.google.com/rss/search?q=Brasileir%C3%A3o&hl=pt-BR&gl=BR&ceid=BR:pt-419","https://news.google.com/rss/search?q=Atl%C3%A9tico+Mineiro+OR+Cruzeiro&hl=pt-BR&gl=BR&ceid=BR:pt-419","https://news.google.com/rss/search?q=Flamengo+futebol&hl=pt-BR&gl=BR&ceid=BR:pt-419"];
+  function texto(valor){var el=document.createElement("div");el.innerHTML=String(valor||"");return(el.textContent||el.innerText||"").replace(/\s+/g," ").trim();}
+  function urlValida(valor){try{var u=new URL(valor);return u.protocol==="https:"||u.protocol==="http:";}catch(e){return false;}}
+  function limpar(){while(slider.firstChild)slider.removeChild(slider.firstChild);}
+  function status(msg){limpar();var el=document.createElement("div");el.className="rf-status";el.textContent=msg;slider.appendChild(el);}
+  function criarSlide(item,i){var article=document.createElement("article");article.className="rf-slide-item"+(i===0?" ativo":"");var img=document.createElement("img");img.src=FALLBACK_IMAGEM;img.alt="Rádio Futebol FM";img.loading=i===0?"eager":"lazy";img.width=900;img.height=310;img.decoding="async";img.onerror=function(){this.onerror=null;this.src=FALLBACK_IMAGEM;};var info=document.createElement("div");info.className="rf-slide-info";var h=document.createElement("h3");h.textContent=texto(item.title)||"Notícia de futebol";var p=document.createElement("p");p.textContent=texto(item.description||item.content||"").slice(0,180)||"Acesse a publicação original para conferir os detalhes.";info.appendChild(h);info.appendChild(p);if(urlValida(item.link)){var a=document.createElement("a");a.className="rf-slide-link";a.href=item.link;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Ler notícia original ↗";info.appendChild(a);}article.appendChild(img);article.appendChild(info);return article;}
+  function iniciarCarrossel(){if(temporizadorNoticias){clearInterval(temporizadorNoticias);temporizadorNoticias=null;}var slides=slider.querySelectorAll(".rf-slide-item");indiceSlide=0;if(!slides.length)return;slides.forEach(function(s,i){s.classList.toggle("ativo",i===0);});if(slides.length<2)return;temporizadorNoticias=setInterval(function(){slides[indiceSlide].classList.remove("ativo");indiceSlide=(indiceSlide+1)%slides.length;slides[indiceSlide].classList.add("ativo");},6000);}
+  async function buscarFeed(feed){var endpoint="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(feed);var resp=await fetch(endpoint,{cache:"no-store"});if(!resp.ok)throw Error("RSS indisponível");var data=await resp.json();if(data.status!=="ok"||!Array.isArray(data.items))throw Error("Feed vazio");return data.items;}
+  async function buscarNoticias(){if(carregandoNoticias)return;carregandoNoticias=true;if(botao){botao.disabled=true;botao.textContent="Atualizando…";}try{var resultados=await Promise.allSettled(feeds.map(buscarFeed)),todos=[];resultados.forEach(function(r){if(r.status==="fulfilled")todos=todos.concat(r.value);});var vistos={},noticias=todos.filter(function(item){if(!item||!item.title||!urlValida(item.link))return false;var k=texto(item.title).toLowerCase();if(vistos[k])return false;vistos[k]=true;return true;}).slice(0,10);if(!noticias.length)throw Error("Sem notícias");limpar();noticias.forEach(function(item,i){slider.appendChild(criarSlide(item,i));});var meta=document.createElement("p");meta.className="rf-news-meta";meta.textContent="Consulta atualizada às "+new Date().toLocaleTimeString("pt-BR",{timeZone:"America/Sao_Paulo"});slider.appendChild(meta);iniciarCarrossel();}catch(e){if(!slider.querySelector(".rf-slide-item"))status("As notícias estão temporariamente indisponíveis. Tente novamente em alguns minutos.");}finally{carregandoNoticias=false;if(botao){botao.disabled=false;botao.textContent="Atualizar notícias";}}}
+  if(botao)botao.addEventListener("click",buscarNoticias);buscarNoticias();window.setInterval(buscarNoticias,15*60*1000);
 })();
-```
