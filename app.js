@@ -1,3 +1,4 @@
+
 /* ==========================================================
    RÁDIO FUTEBOL FM — SLIDER AUTOMÁTICO DE NOTÍCIAS
    Visual responsivo, proteção contra falhas e atualização.
