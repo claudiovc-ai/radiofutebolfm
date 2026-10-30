@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -8,15 +7,16 @@
   <title>Rádio Futebol FM — Futebol, notícias e informação</title>
   <meta name="description" content="Ouça a Rádio Futebol FM ao vivo e acompanhe notícias de futebol e informação.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#090d18">
+  <meta name="theme-color" content="#b5121b">
 
   <link rel="canonical" href="https://radiofutebolfm.online/">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988" crossorigin="anonymous"></script>
+  <!-- Google AdSense: anúncios automáticos (conta do site) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7528769790239988"
+       crossorigin="anonymous"></script>
 
-  <!-- Anúncios -->
+  <!-- Ajustes dos dois anúncios abaixo da área de notícias -->
   <style>
     .rf-ad-box {
       box-sizing: border-box;
@@ -24,14 +24,14 @@
       margin: 0 0 22px;
       padding: 16px;
       overflow: hidden;
-      border: 1px solid #303b51;
+      border: 1px solid #e5e7eb;
       border-radius: 14px;
-      background: #111827;
+      background: #fff;
       text-align: center;
     }
     .rf-ad-title {
       margin-bottom: 12px;
-      color: #b5bac5;
+      color: #687080;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 1.2px;
@@ -45,7 +45,9 @@
       justify-content: center;
       overflow: hidden;
     }
-    .rf-ad-content iframe { max-width: 100%; }
+    .rf-ad-content iframe {
+      max-width: 100%;
+    }
     @media (max-width: 480px) {
       .rf-ad-box { padding: 10px; }
       .rf-ad-content { min-height: 250px; }
@@ -75,13 +77,13 @@
     })(window,document,'script','dataLayer','GTM-NNM9GTR6');
   </script>
 
-  <!-- Ajustes responsivos -->
+  <!-- Ajustes responsivos adicionais: computador, tablet e celular -->
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; width: 100%; overflow-x: hidden; }
     img, iframe, video { max-width: 100%; }
-    .container { width: min(1200px, calc(100% - 32px)); margin-inline: auto; }
+    .container { width: min(1180px, calc(100% - 32px)); margin-inline: auto; }
     .topbar-inner, .header-inner, .nav-inner, .footer-inner { min-width: 0; }
     .nav-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
     .nav-inner a { overflow-wrap: anywhere; }
@@ -121,11 +123,79 @@
       .contact-form label { display: block; width: 100%; }
       .footer-inner { display: flex; flex-direction: column; gap: 14px; }
     }
+    /* Selo AO VIVO centralizado no cabeçalho, sem o símbolo RF */
+    .header-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+    }
+    .header-inner .brand { grid-column: 1; justify-self: start; }
+    .header-inner .live-pill {
+      grid-column: 2;
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 12px 20px;
+      color: #fff;
+      background: linear-gradient(135deg, #ff263b, #a90016);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 0 18px rgba(255, 25, 55, .38);
+      animation: liveFloat 1.8s ease-in-out infinite;
+    }
+    .header-inner .live-pill:hover { color: #fff; filter: brightness(1.12); }
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      flex: 0 0 10px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 0 rgba(255,255,255,.8);
+      animation: livePulse 1.15s infinite;
+    }
+    .equalizer { display: inline-flex; height: 22px; align-items: center; gap: 3px; }
+    .equalizer i {
+      display: block;
+      width: 3px;
+      height: 7px;
+      border-radius: 4px;
+      background: #fff;
+      animation: soundBars .6s ease-in-out infinite alternate;
+    }
+    .equalizer i:nth-child(2) { animation-delay: .15s; }
+    .equalizer i:nth-child(3) { animation-delay: .3s; }
+    .equalizer i:nth-child(4) { animation-delay: .1s; }
+    .equalizer i:nth-child(5) { animation-delay: .25s; }
+    @keyframes soundBars { from { height: 5px; } to { height: 21px; } }
+    @keyframes livePulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,.75); opacity: 1; }
+      70% { box-shadow: 0 0 0 8px rgba(255,255,255,0); opacity: .72; }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); opacity: 1; }
+    }
+    @keyframes liveFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    @media (max-width: 900px) {
+      .header-inner { grid-template-columns: minmax(0, 1fr) auto; }
+      .header-inner .live-pill { grid-column: 2; }
+    }
+    @media (max-width: 600px) {
+      .header-inner { display: flex; flex-direction: column; align-items: center; }
+      .header-inner .brand { align-self: flex-start; }
+      .header-inner .live-pill { align-self: center; }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
   </style>
+
 </head>
 
 <body>
@@ -133,7 +203,7 @@
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNM9GTR6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
-  <!-- Horário e clima -->
+  <!-- Barra de horário e clima -->
   <div class="topbar">
     <div class="container topbar-inner">
       <span id="rf-relogio">Carregando horário…</span>
@@ -144,17 +214,20 @@
     </div>
   </div>
 
-  <!-- Cabeçalho -->
+  <!-- Cabeçalho: removido o selo RF, mantido o nome da rádio -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="Rádio Futebol FM - início">
-        <span class="brand-mark" aria-hidden="true">RF</span>
         <span>
           <strong>RÁDIO FUTEBOL FM</strong>
           <small>Futebol, notícias e informação em tempo real.</small>
         </span>
       </a>
-      <a class="live-pill" href="#radio">AO VIVO AGORA</a>
+      <a class="live-pill" href="#radio" aria-label="Ir para o player da Rádio Futebol FM ao vivo">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>AO VIVO AGORA</span>
+        <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      </a>
     </div>
   </header>
 
@@ -174,14 +247,14 @@
   <main id="inicio" class="container page-grid">
     <div class="main-column">
 
-      <!-- Player principal preservado -->
+      <!-- Player da rádio: preservado -->
       <section id="radio" class="panel player-panel">
         <div class="section-heading">
           <div>
             <span class="eyebrow">SINTONIZE</span>
             <h1>Ouça a Rádio Futebol FM</h1>
           </div>
-          <span class="live-label">AO VIVO</span>
+          <span class="live-label">🔴 AO VIVO</span>
         </div>
         <p class="muted">Futebol, música, notícias e informação para acompanhar você.</p>
         <div class="player-frame">
@@ -189,7 +262,7 @@
         </div>
       </section>
 
-      <!-- Notícias -->
+      <!-- Notícias automáticas: slider preservado -->
       <section id="noticias" class="panel">
         <div class="section-heading">
           <div>
@@ -204,7 +277,7 @@
         <p class="source-note">Notícias e links direcionam para as fontes originais.</p>
       </section>
 
-      <!-- Anúncio 1 -->
+      <!-- Anúncio 1: no lugar da programação -->
       <section id="programacao" class="rf-ad-box" aria-label="Publicidade 1">
         <div class="rf-ad-title">PUBLICIDADE</div>
         <div class="rf-ad-content">
@@ -238,7 +311,7 @@
         </div>
       </section>
 
-      <!-- YouTube -->
+      <!-- YouTube: preservado -->
       <section id="youtube" class="panel">
         <span class="eyebrow">VÍDEOS</span>
         <h2>Rádio Futebol FM no YouTube</h2>
@@ -247,7 +320,7 @@
         </div>
       </section>
 
-      <!-- Contato -->
+      <!-- Contato: preservado -->
       <section id="contato" class="panel">
         <span class="eyebrow">FALE CONOSCO</span>
         <h2>Contato</h2>
@@ -266,9 +339,8 @@
       </section>
     </div>
 
-    <!-- Barra lateral: bloco promocional antigo removido -->
+    <!-- Barra lateral: anúncios e recursos preservados -->
     <aside class="sidebar">
-
       <section class="ad-box" aria-label="Espaço para publicidade">
         <span>Publicidade</span>
         <div class="ad-content">Espaço reservado para anúncio</div>
@@ -323,17 +395,16 @@
     </div>
   </footer>
 
-  <!-- WhatsApp -->
+  <!-- WhatsApp: preservado -->
   <a class="whatsapp-float" href="https://wa.me/5531973126616" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">WhatsApp</a>
 
-  <!-- JavaScript do portal -->
+  <!-- JavaScript atual do portal -->
   <script src="app.js" defer></script>
 
-  <!-- Relógio e clima de Betim-MG -->
+  <!-- Relógio de Brasília e clima atual de Betim-MG -->
   <script>
     (function () {
       "use strict";
-
       function iniciarRelogioEClima() {
         var relogio = document.getElementById("rf-relogio") || document.getElementById("rfClock");
         var clima = document.getElementById("rf-temperatura") || document.getElementById("rfWeather");
@@ -344,25 +415,12 @@
           if (relogio) {
             relogio.textContent = new Intl.DateTimeFormat("pt-BR", {
               timeZone: "America/Sao_Paulo",
-              weekday: "short",
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-              hour12: false
+              weekday: "short", day: "2-digit", month: "2-digit", year: "numeric",
+              hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
             }).format(new Date()).replace(",", " •");
           }
-
-          if (ano) {
-            ano.textContent = new Intl.DateTimeFormat("pt-BR", {
-              timeZone: "America/Sao_Paulo",
-              year: "numeric"
-            }).format(new Date());
-          }
+          if (ano) ano.textContent = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", year: "numeric" }).format(new Date());
         }
-
         atualizarRelogio();
         window.setInterval(atualizarRelogio, 1000);
 
@@ -380,51 +438,28 @@
 
         async function atualizarClima() {
           if (!clima) return;
-
           try {
             var url = "https://api.open-meteo.com/v1/forecast?latitude=-19.9678&longitude=-44.1983&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code&timezone=America%2FSao_Paulo";
             var resposta = await fetch(url, { cache: "no-store" });
-
             if (!resposta.ok) throw new Error("Não foi possível consultar o clima");
-
             var dados = await resposta.json();
-
-            if (!dados.current || typeof dados.current.temperature_2m !== "number") {
-              throw new Error("Dados do clima indisponíveis");
-            }
-
+            if (!dados.current || typeof dados.current.temperature_2m !== "number") throw new Error("Dados do clima indisponíveis");
             var condicao = descricaoTempo(dados.current.weather_code);
-
             if (icone) icone.textContent = condicao[0];
-
-            clima.textContent = "Betim-MG: " +
-              Math.round(dados.current.temperature_2m) +
-              "°C • " + condicao[1];
-
-            clima.setAttribute(
-              "title",
-              "Sensação térmica: " +
-              Math.round(dados.current.apparent_temperature) +
-              "°C • Umidade: " +
-              dados.current.relative_humidity_2m + "%"
-            );
-
+            clima.textContent = "Betim-MG: " + Math.round(dados.current.temperature_2m) + "°C • " + condicao[1];
+            clima.setAttribute("title", "Sensação térmica: " + Math.round(dados.current.apparent_temperature) + "°C • Umidade: " + dados.current.relative_humidity_2m + "%");
           } catch (erro) {
             if (icone) icone.textContent = "🌤️";
             clima.textContent = "Betim-MG • clima indisponível no momento";
           }
         }
-
         atualizarClima();
         window.setInterval(atualizarClima, 10 * 60 * 1000);
       }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", iniciarRelogioEClima);
-      } else {
-        iniciarRelogioEClima();
-      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciarRelogioEClima);
+      else iniciarRelogioEClima();
     })();
   </script>
 </body>
 </html>
+
