@@ -460,6 +460,32 @@
       else iniciarRelogioEClima();
     })();
   </script>
+<script>
+(function () {
+  "use strict";
+
+  function atualizarTema() {
+    var hora = Number(
+      new Intl.DateTimeFormat("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+        hour: "2-digit",
+        hour12: false
+      }).format(new Date())
+    );
+
+    document.body.classList.remove("tema-manha", "tema-noite");
+
+    if (hora >= 6 && hora < 18) {
+      document.body.classList.add("tema-manha");
+    } else {
+      document.body.classList.add("tema-noite");
+    }
+  }
+
+  atualizarTema();
+  setInterval(atualizarTema, 60000);
+})();
+</script>
 </body>
 </html>
 
