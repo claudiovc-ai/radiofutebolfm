@@ -1,220 +1,127 @@
-/* =====================================
-   RÁDIO FUTEBOL FM - TEMA AUTOMÁTICO
-   MANHÃ: PRETO | NOITE: BRANCO
-===================================== */
 
-/* REMOVER SÍMBOLO RF */
-.brand-mark {
-  display: none !important;
-}
+/* =========================================
+   NOVO TOPO - RADIO FUTEBOL FM
+   ========================================= */
 
-/* FUNDO PRETO - 06h às 17h59 */
-body.tema-manha {
-  background: #080808 !important;
-  color: #f5f5f5 !important;
-}
-
-body.tema-manha .page-grid {
-  background: #080808;
-}
-
-body.tema-manha .panel,
-body.tema-manha .rf-ad-box,
-body.tema-manha .ad-box {
-  background: #171717 !important;
-  color: #f5f5f5 !important;
-  border-color: #383838 !important;
-}
-
-body.tema-manha .panel h1,
-body.tema-manha .panel h2,
-body.tema-manha .panel p,
-body.tema-manha .panel small {
-  color: #f5f5f5;
-}
-
-body.tema-manha .rf-slide-item,
-body.tema-manha .rf-status,
-body.tema-manha .topic-grid a,
-body.tema-manha .social-links a {
-  background: #101010 !important;
-  color: #fff !important;
-  border-color: #383838 !important;
-}
-
-body.tema-manha .contact-form input,
-body.tema-manha .contact-form textarea {
-  background: #080808 !important;
-  color: #fff !important;
-  border-color: #555 !important;
-}
-
-/* FUNDO BRANCO - 18h às 05h59 */
-body.tema-noite {
-  background: #fff !important;
-  color: #171717 !important;
-}
-
-body.tema-noite .page-grid {
-  background: #fff;
-}
-
-body.tema-noite .panel,
-body.tema-noite .rf-ad-box,
-body.tema-noite .ad-box {
-  background: #f5f5f5 !important;
-  color: #171717 !important;
-  border-color: #ddd !important;
-}
-
-body.tema-noite .panel h1,
-body.tema-noite .panel h2,
-body.tema-noite .panel p,
-body.tema-noite .panel small {
-  color: #171717;
-}
-
-body.tema-noite .muted,
-body.tema-noite .source-note {
-  color: #555 !important;
-}
-
-body.tema-noite .rf-slide-item,
-body.tema-noite .rf-status,
-body.tema-noite .topic-grid a,
-body.tema-noite .social-links a {
-  background: #fff !important;
-  color: #171717 !important;
-  border-color: #ddd !important;
-}
-
-body.tema-noite .rf-slide-info h3,
-body.tema-noite .rf-slide-info p {
-  color: #171717 !important;
-}
-
-body.tema-noite .contact-form input,
-body.tema-noite .contact-form textarea {
-  background: #fff !important;
-  color: #171717 !important;
-  border-color: #ccc !important;
-}
-
-/* CABEÇALHO E MENU PRESERVAM O VERMELHO DA RÁDIO */
-.site-header {
-  border-bottom-color: #ed1828;
-}
-
-.main-nav {
-  background: #b90016;
-}
-
-/* ANIMAÇÕES REDUZIDAS SE O VISITANTE PREFERIR */
-@media (prefers-reduced-motion: reduce) {
-  body,
-  * {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-}
-/* VISUAL PREMIUM - RADIO FUTEBOL FM */
-
-:root {
-  --red: #ed1828;
-  --red-dark: #a90012;
-  --radius: 18px;
-}
-
-.site-header {
-  background:
-    radial-gradient(ellipse at 50% 0%, #42121a, transparent 65%),
-    linear-gradient(135deg, #080808, #191919);
-  border-bottom: 3px solid var(--red);
-}
-
-.brand-mark {
-  display: none !important;
-}
-
-.brand strong {
-  font-size: clamp(1.5rem, 3vw, 2.3rem);
-  letter-spacing: 2px;
-  text-shadow: 0 2px 15px #ed182855;
-}
-
-.live-pill {
-  border: 1px solid #ff5360;
-  background: linear-gradient(135deg, #ed1828, #92000f);
-  box-shadow: 0 0 20px #ed182855;
-  transition: .25s ease;
-}
-
-.live-pill:hover {
-  transform: scale(1.04);
-}
-
-.panel {
-  border-radius: 18px;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.panel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 35px #0003;
-}
-
-.player-panel {
-  border-top: 4px solid var(--red);
-}
-
-.player-frame {
-  border: 2px solid #ed182855;
-  border-radius: 15px;
-  box-shadow: 0 0 22px #ed182822;
-}
-
-.section-heading {
-  border-bottom: 1px solid #8883;
-  padding-bottom: 12px;
-}
-
-.eyebrow {
-  letter-spacing: 2px;
-}
-
-.main-nav {
-  background: linear-gradient(90deg, #90000f, #d00019, #90000f);
-}
-
-.rf-slide-item {
-  border-radius: 15px;
+.hero-header {
+  position: relative;
   overflow: hidden;
+  min-height: 390px;
+  padding: 65px 20px 55px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #70202a 0%, transparent 65%),
+    linear-gradient(135deg, #080808, #1c080b 65%, #080808) !important;
+  color: #fff !important;
+  text-align: center;
+  border-bottom: 4px solid #ed1828 !important;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-kicker {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #ff6874 !important;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.hero-header h1 {
+  margin: 0;
+  color: #fff !important;
+  font-size: clamp(2.3rem, 6vw, 4.8rem);
+  font-weight: 1000;
+  line-height: 1.05;
+  letter-spacing: 2px;
+  text-shadow: 0 5px 25px #ed182866;
+}
+
+.hero-header h2 {
+  margin: 20px 0 10px;
+  color: #ff3547 !important;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 900;
+}
+
+.hero-header p {
+  margin: 5px 0 28px;
+  color: #eee !important;
+  font-size: 1.05rem;
+}
+
+.hero-listen {
+  display: inline-block;
+  padding: 16px 35px;
+  border: 1px solid #ff6874;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #ff263b, #a90016);
+  color: #fff !important;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px #ed182855;
   transition: .25s ease;
 }
 
-.rf-slide-item:hover {
-  border-color: var(--red);
+.hero-listen:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px #ed182877;
 }
 
-.button {
-  border-radius: 11px;
-  box-shadow: 0 5px 15px #ed182833;
+.hero-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
 }
 
-.site-footer {
-  border-top: 4px solid var(--red);
+.hero-categories a {
+  padding: 10px 18px;
+  border: 1px solid #ffffff44;
+  border-radius: 30px;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: .2s ease;
 }
 
-@media(max-width:700px) {
-  .brand strong {
-    font-size: 1.4rem;
+.hero-categories a:hover {
+  background: #ed1828;
+  border-color: #ed1828;
+}
+
+@media (max-width: 600px) {
+  .hero-header {
+    min-height: 350px;
+    padding: 48px 14px 40px;
   }
 
-  .live-pill {
-    align-self: center;
+  .hero-header h1 {
+    font-size: 2.2rem;
   }
 
-  .panel {
-    border-radius: 14px;
+  .hero-header p {
+    max-width: 320px;
+    line-height: 1.6;
+  }
+
+  .hero-categories {
+    gap: 8px;
+  }
+
+  .hero-categories a {
+    padding: 9px 12px;
+    font-size: 11px;
   }
 }
