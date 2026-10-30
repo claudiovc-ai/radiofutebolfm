@@ -1,26 +1,119 @@
-<script>
-(function () {
-  "use strict";
+/* =====================================
+   RÁDIO FUTEBOL FM - TEMA AUTOMÁTICO
+   MANHÃ: PRETO | NOITE: BRANCO
+===================================== */
 
-  function atualizarTema() {
-    var hora = Number(
-      new Intl.DateTimeFormat("pt-BR", {
-        timeZone: "America/Sao_Paulo",
-        hour: "2-digit",
-        hour12: false
-      }).format(new Date())
-    );
+/* REMOVER SÍMBOLO RF */
+.brand-mark {
+  display: none !important;
+}
 
-    document.body.classList.remove("tema-manha", "tema-noite");
+/* FUNDO PRETO - 06h às 17h59 */
+body.tema-manha {
+  background: #080808 !important;
+  color: #f5f5f5 !important;
+}
 
-    if (hora >= 6 && hora < 18) {
-      document.body.classList.add("tema-manha");
-    } else {
-      document.body.classList.add("tema-noite");
-    }
+body.tema-manha .page-grid {
+  background: #080808;
+}
+
+body.tema-manha .panel,
+body.tema-manha .rf-ad-box,
+body.tema-manha .ad-box {
+  background: #171717 !important;
+  color: #f5f5f5 !important;
+  border-color: #383838 !important;
+}
+
+body.tema-manha .panel h1,
+body.tema-manha .panel h2,
+body.tema-manha .panel p,
+body.tema-manha .panel small {
+  color: #f5f5f5;
+}
+
+body.tema-manha .rf-slide-item,
+body.tema-manha .rf-status,
+body.tema-manha .topic-grid a,
+body.tema-manha .social-links a {
+  background: #101010 !important;
+  color: #fff !important;
+  border-color: #383838 !important;
+}
+
+body.tema-manha .contact-form input,
+body.tema-manha .contact-form textarea {
+  background: #080808 !important;
+  color: #fff !important;
+  border-color: #555 !important;
+}
+
+/* FUNDO BRANCO - 18h às 05h59 */
+body.tema-noite {
+  background: #fff !important;
+  color: #171717 !important;
+}
+
+body.tema-noite .page-grid {
+  background: #fff;
+}
+
+body.tema-noite .panel,
+body.tema-noite .rf-ad-box,
+body.tema-noite .ad-box {
+  background: #f5f5f5 !important;
+  color: #171717 !important;
+  border-color: #ddd !important;
+}
+
+body.tema-noite .panel h1,
+body.tema-noite .panel h2,
+body.tema-noite .panel p,
+body.tema-noite .panel small {
+  color: #171717;
+}
+
+body.tema-noite .muted,
+body.tema-noite .source-note {
+  color: #555 !important;
+}
+
+body.tema-noite .rf-slide-item,
+body.tema-noite .rf-status,
+body.tema-noite .topic-grid a,
+body.tema-noite .social-links a {
+  background: #fff !important;
+  color: #171717 !important;
+  border-color: #ddd !important;
+}
+
+body.tema-noite .rf-slide-info h3,
+body.tema-noite .rf-slide-info p {
+  color: #171717 !important;
+}
+
+body.tema-noite .contact-form input,
+body.tema-noite .contact-form textarea {
+  background: #fff !important;
+  color: #171717 !important;
+  border-color: #ccc !important;
+}
+
+/* CABEÇALHO E MENU PRESERVAM O VERMELHO DA RÁDIO */
+.site-header {
+  border-bottom-color: #ed1828;
+}
+
+.main-nav {
+  background: #b90016;
+}
+
+/* ANIMAÇÕES REDUZIDAS SE O VISITANTE PREFERIR */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
   }
-
-  atualizarTema();
-  setInterval(atualizarTema, 60000);
-})();
-</script>
+}
