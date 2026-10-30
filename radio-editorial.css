@@ -1,0 +1,116 @@
+
+/* RADIO FUTEBOL FM - ESTILO EDITORIAL */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f4f6;
+    color: #222;
+    line-height: 1.7;
+}
+
+header {
+    background: #111111;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    color: #ffcc00;
+    font-size: 30px;
+    margin: 0;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+nav {
+    background: #b00000;
+    padding: 13px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 12px;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+main {
+    max-width: 1000px;
+    margin: 25px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #b00000;
+    margin-top: 25px;
+}
+
+h3 {
+    color: #333333;
+}
+
+.artigo {
+    background: #fafafa;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.artigo a {
+    color: #b00000;
+    font-weight: bold;
+}
+
+.botao {
+    display: inline-block;
+    background: #b00000;
+    color: #ffffff;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.botao:hover {
+    background: #850000;
+}
+
+footer {
+    background: #111111;
+    color: #ffffff;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        margin: 10px;
+        padding: 16px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+}
