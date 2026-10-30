@@ -117,3 +117,104 @@ body.tema-noite .contact-form textarea {
     transition-duration: .01ms !important;
   }
 }
+/* VISUAL PREMIUM - RADIO FUTEBOL FM */
+
+:root {
+  --red: #ed1828;
+  --red-dark: #a90012;
+  --radius: 18px;
+}
+
+.site-header {
+  background:
+    radial-gradient(ellipse at 50% 0%, #42121a, transparent 65%),
+    linear-gradient(135deg, #080808, #191919);
+  border-bottom: 3px solid var(--red);
+}
+
+.brand-mark {
+  display: none !important;
+}
+
+.brand strong {
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  letter-spacing: 2px;
+  text-shadow: 0 2px 15px #ed182855;
+}
+
+.live-pill {
+  border: 1px solid #ff5360;
+  background: linear-gradient(135deg, #ed1828, #92000f);
+  box-shadow: 0 0 20px #ed182855;
+  transition: .25s ease;
+}
+
+.live-pill:hover {
+  transform: scale(1.04);
+}
+
+.panel {
+  border-radius: 18px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px #0003;
+}
+
+.player-panel {
+  border-top: 4px solid var(--red);
+}
+
+.player-frame {
+  border: 2px solid #ed182855;
+  border-radius: 15px;
+  box-shadow: 0 0 22px #ed182822;
+}
+
+.section-heading {
+  border-bottom: 1px solid #8883;
+  padding-bottom: 12px;
+}
+
+.eyebrow {
+  letter-spacing: 2px;
+}
+
+.main-nav {
+  background: linear-gradient(90deg, #90000f, #d00019, #90000f);
+}
+
+.rf-slide-item {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .25s ease;
+}
+
+.rf-slide-item:hover {
+  border-color: var(--red);
+}
+
+.button {
+  border-radius: 11px;
+  box-shadow: 0 5px 15px #ed182833;
+}
+
+.site-footer {
+  border-top: 4px solid var(--red);
+}
+
+@media(max-width:700px) {
+  .brand strong {
+    font-size: 1.4rem;
+  }
+
+  .live-pill {
+    align-self: center;
+  }
+
+  .panel {
+    border-radius: 14px;
+  }
+}
