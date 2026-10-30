@@ -1,119 +1,121 @@
 /* =====================================
-   RÁDIO FUTEBOL FM - TEMA AUTOMÁTICO
-   MANHÃ: PRETO | NOITE: BRANCO
+   ACABAMENTO PREMIUM - RÁDIO FUTEBOL FM
 ===================================== */
 
-/* REMOVER SÍMBOLO RF */
-.brand-mark {
-  display: none !important;
+/* Transição suave entre os temas */
+body {
+  transition: background .35s ease, color .35s ease;
 }
 
-/* FUNDO PRETO - 06h às 17h59 */
-body.tema-manha {
-  background: #080808 !important;
-  color: #f5f5f5 !important;
-}
-
-body.tema-manha .page-grid {
-  background: #080808;
-}
-
-body.tema-manha .panel,
-body.tema-manha .rf-ad-box,
-body.tema-manha .ad-box {
-  background: #171717 !important;
-  color: #f5f5f5 !important;
-  border-color: #383838 !important;
-}
-
-body.tema-manha .panel h1,
-body.tema-manha .panel h2,
-body.tema-manha .panel p,
-body.tema-manha .panel small {
-  color: #f5f5f5;
-}
-
-body.tema-manha .rf-slide-item,
-body.tema-manha .rf-status,
-body.tema-manha .topic-grid a,
-body.tema-manha .social-links a {
-  background: #101010 !important;
-  color: #fff !important;
-  border-color: #383838 !important;
-}
-
-body.tema-manha .contact-form input,
-body.tema-manha .contact-form textarea {
-  background: #080808 !important;
-  color: #fff !important;
-  border-color: #555 !important;
-}
-
-/* FUNDO BRANCO - 18h às 05h59 */
-body.tema-noite {
-  background: #fff !important;
-  color: #171717 !important;
-}
-
-body.tema-noite .page-grid {
-  background: #fff;
-}
-
-body.tema-noite .panel,
-body.tema-noite .rf-ad-box,
-body.tema-noite .ad-box {
-  background: #f5f5f5 !important;
-  color: #171717 !important;
-  border-color: #ddd !important;
-}
-
-body.tema-noite .panel h1,
-body.tema-noite .panel h2,
-body.tema-noite .panel p,
-body.tema-noite .panel small {
-  color: #171717;
-}
-
-body.tema-noite .muted,
-body.tema-noite .source-note {
-  color: #555 !important;
-}
-
-body.tema-noite .rf-slide-item,
-body.tema-noite .rf-status,
-body.tema-noite .topic-grid a,
-body.tema-noite .social-links a {
-  background: #fff !important;
-  color: #171717 !important;
-  border-color: #ddd !important;
-}
-
-body.tema-noite .rf-slide-info h3,
-body.tema-noite .rf-slide-info p {
-  color: #171717 !important;
-}
-
-body.tema-noite .contact-form input,
-body.tema-noite .contact-form textarea {
-  background: #fff !important;
-  color: #171717 !important;
-  border-color: #ccc !important;
-}
-
-/* CABEÇALHO E MENU PRESERVAM O VERMELHO DA RÁDIO */
+/* Cabeçalho */
 .site-header {
-  border-bottom-color: #ed1828;
+  border-bottom: 4px solid #ed1828;
+  box-shadow: 0 5px 22px rgba(0,0,0,.18);
 }
 
+.brand strong {
+  letter-spacing: 1.5px;
+  font-weight: 900;
+}
+
+/* Menu */
 .main-nav {
-  background: #b90016;
+  box-shadow: 0 5px 18px rgba(0,0,0,.2);
 }
 
-/* ANIMAÇÕES REDUZIDAS SE O VISITANTE PREFERIR */
-@media (prefers-reduced-motion: reduce) {
-  body,
-  * {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
+.nav-inner a {
+  transition: background .2s ease, color .2s ease;
+  border-radius: 6px;
+}
+
+.nav-inner a:hover {
+  background: #850010;
+}
+
+/* Cartões */
+.panel {
+  border-radius: 18px;
+  box-shadow: 0 8px 26px rgba(0,0,0,.12);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.panel:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+
+/* Player */
+.player-panel {
+  border-top: 5px solid #ed1828;
+}
+
+.player-frame {
+  border: 2px solid #ed1828;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(237,24,40,.15);
+}
+
+/* Notícias */
+.rf-slide-item {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform .2s ease;
+}
+
+.rf-slide-item:hover {
+  transform: translateY(-3px);
+}
+
+.rf-slide-item img {
+  border-radius: 11px;
+}
+
+/* Botões */
+.button,
+.button-outline {
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.button:hover,
+.button-outline:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* WhatsApp */
+.whatsapp-float {
+  border: 2px solid rgba(255,255,255,.4);
+  box-shadow: 0 6px 22px rgba(0,0,0,.25);
+  transition: transform .2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.05);
+}
+
+/* Rodapé */
+.site-footer {
+  border-top: 4px solid #ed1828;
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .panel {
+    border-radius: 13px;
+    padding: 16px;
+  }
+
+  .rf-slide-item {
+    grid-template-columns: 1fr;
+  }
+
+  .rf-slide-item img {
+    width: 100%;
+    height: 190px;
+  }
+
+  .whatsapp-float {
+    right: 12px;
+    bottom: 12px;
+    font-size: 14px;
   }
 }
