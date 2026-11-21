@@ -1,36 +1,232 @@
-/* Tema automático da Rádio Futebol FM */
-body.tema-manha {
-  background: #080808 !important;
-  color: #f5f5f5 !important;
-}
 
-body.tema-noite {
-  background: #ffffff !important;
-  color: #171717 !important;
+*{box-sizing:border-box}
+:root{
+--azul:#071b38;
+--azul2:#103e70;
+--vermelho:#df2939;
+--cinza:#f3f5f8;
+--texto:#182538;
 }
-
-body.tema-manha .panel,
-body.tema-manha .sidebar .ad-box {
-  background: #171717;
-  color: #ffffff;
+body{
+margin:0;
+background:var(--cinza);
+color:var(--texto);
+font-family:Arial,Helvetica,sans-serif;
 }
-
-body.tema-noite .panel,
-body.tema-noite .sidebar .ad-box {
-  background: #f5f5f5;
-  color: #171717;
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,94%);margin:auto}
+.topbar{background:#04132b;color:#dbe5f3;font-size:12px}
+.topbar-content{display:flex;justify-content:space-between;padding:9px 0}
+.header{background:white}
+.header-content{
+min-height:88px;display:flex;
+align-items:center;justify-content:space-between;
 }
-
-body.tema-manha p,
-body.tema-manha h1,
-body.tema-manha h2,
-body.tema-manha small {
-  color: #f5f5f5;
+.logo{display:flex;align-items:center;gap:12px;color:var(--azul);font-size:21px}
+.logo-icon{
+background:linear-gradient(135deg,#1768ac,#071b38);
+color:white;border-radius:50%;width:48px;height:48px;
+display:grid;place-items:center;font-weight:bold;
 }
-
-body.tema-noite p,
-body.tema-noite h1,
-body.tema-noite h2,
-body.tema-noite small {
-  color: #171717;
+.logo strong{color:#1768ac}
+.logo small{display:block;font-size:9px;color:#8290a2;letter-spacing:2px}
+.botao-live{
+background:var(--vermelho);color:white;
+padding:12px 17px;border-radius:3px;
+font-size:11px;font-weight:bold;
+}
+.menu{background:var(--azul);color:white}
+.menu-content{display:flex;gap:27px;overflow-x:auto}
+.menu a{
+padding:15px 0;white-space:nowrap;
+font-size:12px;font-weight:bold;
+border-bottom:3px solid transparent;
+}
+.menu a:hover{border-color:var(--vermelho)}
+.plantao{
+margin:19px 0;background:white;padding:11px 13px;
+display:flex;align-items:center;gap:12px;
+font-size:12px;border:1px solid #e3e8ef;
+}
+.plantao strong{background:var(--vermelho);color:white;padding:6px 9px}
+.destaques{
+display:grid;grid-template-columns:1.7fr 1fr;gap:14px;
+}
+.destaque-principal{
+height:410px;position:relative;overflow:hidden;
+background:#071b38;color:white;
+}
+.destaque-principal img{
+width:100%;height:100%;object-fit:cover;opacity:.85;
+}
+.destaque-texto{
+position:absolute;inset:auto 25px 28px;
+background:linear-gradient(transparent,#071b38);
+padding:55px 5px 0;
+}
+.categoria{
+display:inline-block;background:var(--vermelho);
+color:white;padding:5px 8px;font-size:9px;font-weight:bold;
+}
+.destaque-texto h1{
+font-size:clamp(27px,3.5vw,42px);
+line-height:1.12;margin:13px 0;
+}
+.destaque-texto p{font-size:13px;color:#e2e9f3}
+.destaque-texto>a{font-size:11px;font-weight:bold}
+.destaques-laterais{display:grid;grid-template-rows:1fr 1fr;gap:14px}
+.destaque-menor{
+color:white;padding:19px;display:flex;
+flex-direction:column;justify-content:end;
+background-size:cover;background-position:center;
+min-height:190px;position:relative;
+}
+.destaque-menor:before{
+content:"";position:absolute;inset:0;
+background:linear-gradient(0deg,#071b38ed,transparent);
+}
+.destaque-menor>*{position:relative}
+.destaque-menor h2{font-size:19px;line-height:1.2;margin:10px 0}
+.destaque-menor b{font-size:10px}
+.brasil{
+background-image:url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80")
+}
+.mundo{
+background-image:url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=80")
+}
+.radio{
+background:linear-gradient(110deg,#071b38,#14528e);
+color:white;margin:23px 0;padding:17px;
+display:flex;align-items:center;gap:16px;
+}
+.radio-titulo{display:flex;align-items:center;gap:12px;min-width:220px}
+.radio-nota{
+width:44px;height:44px;border-radius:50%;
+background:#ffffff22;display:grid;place-items:center;font-size:24px;
+}
+.radio-titulo small{color:#a9c9ed;font-size:9px;font-weight:bold}
+.radio-titulo h2{font-size:18px;margin:2px 0}
+.ao-vivo{font-size:9px;color:#ffb8be;font-weight:bold}
+.player{
+height:55px;width:min(440px,55%);
+margin-left:auto;background:white;overflow:hidden;
+}
+.player iframe{width:100%;height:100%;border:0}
+.publicidade{
+min-height:275px;background:white;border:1px solid #e0e5ec;
+margin-bottom:25px;position:relative;
+display:flex;align-items:center;justify-content:center;
+}
+.publicidade>span{
+position:absolute;top:8px;font-size:9px;
+color:#98a2b0;letter-spacing:2px;
+}
+.conteudo{
+display:grid;grid-template-columns:minmax(0,1fr) 290px;
+gap:25px;align-items:start;
+}
+.titulo-secao{
+display:flex;justify-content:space-between;
+align-items:end;border-bottom:1px solid #dce3ec;
+padding-bottom:13px;margin-bottom:16px;
+}
+.titulo-secao small,.secao-links>small,.videos>small{
+font-size:9px;color:#8291a5;font-weight:bold;letter-spacing:2px;
+}
+.titulo-secao h2,.secao-links h2,.videos h2{
+font-size:25px;color:var(--azul);margin:4px 0 0;
+}
+#atualizar-noticias{
+background:var(--azul);color:white;border:0;
+padding:9px 13px;font-size:11px;cursor:pointer;
+}
+.noticias{
+display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+gap:14px;
+}
+.noticia{
+background:white;border:1px solid #e2e7ee;
+overflow:hidden;
+}
+.noticia img{width:100%;height:155px;object-fit:cover;display:block}
+.noticia-corpo{padding:13px}
+.noticia-data{font-size:10px;color:#8794a5}
+.noticia h3{font-size:16px;line-height:1.35;margin:8px 0 12px}
+.noticia h3 a:hover{color:#1768ac}
+.noticia-fonte{font-size:10px;color:#7c899a;font-weight:bold}
+.status{font-size:10px;color:#8794a5;margin-top:12px}
+.secao-links,.videos{
+background:white;padding:19px;margin:25px 0;
+border:1px solid #e3e8ef;
+}
+.links-categorias{
+display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px;
+}
+.links-categorias a{
+background:#f0f4f8;padding:13px;
+font-size:11px;font-weight:bold;color:#17436f;
+}
+.links-categorias a:hover{background:#e1eaf5}
+.video-frame{position:relative;padding-top:56.25%;margin-top:15px}
+.video-frame iframe{
+position:absolute;inset:0;width:100%;height:100%;border:0;
+}
+.caixa-lateral{
+background:white;border:1px solid #e1e6ed;
+padding:19px;margin-bottom:17px;
+}
+.caixa-lateral small{font-size:9px;color:#8291a5;letter-spacing:2px;font-weight:bold}
+.caixa-lateral h3{font-size:20px;color:var(--azul);line-height:1.25}
+.caixa-lateral p{font-size:12px;color:#718096}
+.caixa-lateral>a{font-size:11px;color:#1768ac;font-weight:bold}
+.escura{background:var(--azul);color:white}
+.escura h3{color:white}
+.escura>a{color:#9dc9f3}
+.lateral-ad{height:280px}
+footer{background:#04142d;color:white;margin-top:40px}
+.rodape{padding:29px 0;display:grid;grid-template-columns:1fr auto;gap:15px}
+.rodape strong{font-size:18px}
+.rodape p{font-size:11px;color:#aabbd0}
+.rodape-links{display:flex;gap:17px;align-items:center;flex-wrap:wrap}
+.rodape-links a{font-size:11px}
+.rodape small{grid-column:1/-1;border-top:1px solid #ffffff25;padding-top:13px;color:#9baec5}
+.whatsapp{
+position:fixed;right:18px;bottom:18px;
+background:#1fae60;color:white;padding:13px 17px;
+border-radius:30px;font-size:11px;font-weight:bold;
+box-shadow:0 4px 15px #0003;z-index:10;
+}
+@media(max-width:850px){
+.destaques{grid-template-columns:1fr}
+.destaque-principal{height:360px}
+.destaques-laterais{grid-template-columns:1fr 1fr;grid-template-rows:180px}
+.conteudo{grid-template-columns:1fr}
+.lateral{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.radio{flex-wrap:wrap}
+.player{width:100%;margin:5px 0 0}
+}
+@media(max-width:560px){
+.container{width:94%}
+.header-content{min-height:72px}
+.logo{font-size:16px}
+.logo-icon{width:42px;height:42px}
+.logo small{font-size:7px}
+.botao-live{font-size:9px;padding:10px}
+.menu-content{gap:20px}
+.menu a{font-size:11px}
+.destaque-principal{height:340px}
+.destaque-texto{inset:auto 17px 20px}
+.destaque-texto h1{font-size:29px}
+.destaques-laterais{grid-template-columns:1fr 1fr;grid-template-rows:165px}
+.destaque-menor{padding:12px}
+.destaque-menor h2{font-size:15px}
+.radio{padding:13px}
+.radio-titulo{min-width:0}
+.noticias{grid-template-columns:1fr}
+.noticia img{height:190px}
+.links-categorias{grid-template-columns:1fr}
+.lateral{grid-template-columns:1fr}
+.rodape{grid-template-columns:1fr}
+.rodape-links{gap:12px}
+.rodape small{grid-column:auto}
 }
