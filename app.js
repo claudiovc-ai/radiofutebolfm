@@ -1,160 +1,357 @@
 
-const lista = document.getElementById("lista-noticias");
-const statusNoticias = document.getElementById("status-noticias");
-const botaoAtualizar = document.getElementById("atualizar-noticias");
+/* ==========================================
+   RADIO FUTEBOL FM
+   NOTICIAS ATUALIZADAS A CADA 2 MINUTOS
+========================================== */
 
-const imagemPadrao =
-"https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=80";
+(function () {
+  "use strict";
 
-// Feed de notícias de futebol em português.
-const feed =
-"https://news.google.com/rss/search?q=futebol&hl=pt-BR&gl=BR&ceid=BR:pt-419";
+  if (window.RFNoticiasIniciado) return;
+  window.RFNoticiasIniciado = true;
 
-const endereco =
-"https://api.rss2json.com/v1/api.json?rss_url=" +
-encodeURIComponent(feed);
+  const INTERVALO = 2 * 60 * 1000;
+  const LIMITE = 20;
+  const PROXY = "https://api.rss2json.com/v1/api.json?rss_url=";
 
-function escapar(texto) {
-  return String(texto || "").replace(/[&<>"']/g, letra => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[letra]));
-}
+  const FONTES = [
+    {
+      nome: "G1 Esportes",
+      url: "https://g1.globo.com/dynamo/esportes/rss2.xml"
+    },
+    {
+      nome: "Itatiaia",
+      url: "https://news.google.com/rss/search?q=site%3Aitatiaia.com.br%2Fesportes+futebol&hl=pt-BR&gl=BR&ceid=BR%3Apt-419"
+    },
+    {
+      nome: "Futebol brasileiro",
+      url: "https://news.google.com/rss/search?q=futebol+brasileiro&hl=pt-BR&gl=BR&ceid=BR%3Apt-419"
+    },
+    {
+      nome: "Atlético-MG",
+      url: "https://news.google.com/rss/search?q=Atl%C3%A9tico+Mineiro&hl=pt-BR&gl=BR&ceid=BR%3Apt-419"
+    },
+    {
+      nome: "Cruzeiro",
+      url: "https://news.google.com/rss/search?q=Cruzeiro+futebol&hl=pt-BR&gl=BR&ceid=BR%3Apt-419"
+    },
+    {
+      nome: "Futebol internacional",
+      url: "https://news.google.com/rss/search?q=futebol+internacional&hl=pt-BR&gl=BR&ceid=BR%3Apt-419"
+    }
+  ];
 
-function dataFormatada(data) {
-  const d = new Date(data);
+  let noticias = [];
+  let carregando = false;
 
-  if (isNaN(d.getTime())) return "Notícia recente";
+  const lista = document.getElementById("lista-noticias");
+  const slider = document.getElementById("rf-news-slider");
+  const status = document.getElementById("status-noticias");
+  const botao =
+    document.getElementById("atualizar-noticias") ||
+    document.getElementById("rf-news-refresh");
 
-  return d.toLocaleString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
-
-function pegarImagem(item) {
-  if (item.thumbnail) return item.thumbnail;
-
-  if (item.enclosure && item.enclosure.link) {
-    return item.enclosure.link;
+  function limparTexto(texto) {
+    const elemento = document.createElement("div");
+    elemento.innerHTML = texto || "";
+    return (elemento.textContent || "").trim();
   }
 
-  const descricao = item.description || "";
-  const resultado = descricao.match(/<img[^>]+src=["']([^"']+)/i);
-
-  return resultado ? resultado[1] : imagemPadrao;
-}
-
-function mostrarNoticias(items) {
-  const noticias = items
-    .filter(item => item.title && item.link)
-    .slice(0, 12);
-
-  if (!noticias.length) {
-    throw new Error("Nenhuma notícia encontrada.");
+  function urlValida(valor) {
+    try {
+      const url = new URL(valor);
+      return ["https:", "http:"].includes(url.protocol)
+        ? url.href
+        : "";
+    } catch {
+      return "";
+    }
   }
 
-  lista.innerHTML = noticias.map(item => {
-    const titulo = escapar(item.title);
-    const link = escapar(item.link);
-    const imagem = escapar(pegarImagem(item));
-    const fonte = escapar(
-      item.author || item.source || "Fonte original"
+  function dataHoje(data) {
+    const d = new Date(data);
+    if (isNaN(d.getTime())) return false;
+
+    const hoje = new Date();
+
+    return (
+      d.getDate() === hoje.getDate() &&
+      d.getMonth() === hoje.getMonth() &&
+      d.getFullYear() === hoje.getFullYear()
     );
+  }
 
-    return `
-      <article class="noticia">
-        <a href="${link}" target="_blank" rel="noopener noreferrer">
-          <img
-            src="${imagem}"
-            alt=""
-            loading="lazy"
-            onerror="this.onerror=null;this.src='${imagemPadrao}'">
-        </a>
+  function formatarData(data) {
+    const d = new Date(data);
 
-        <div class="noticia-corpo">
-          <div class="noticia-data">
-            ${dataFormatada(item.pubDate)}
-          </div>
+    if (isNaN(d.getTime())) {
+      return "Data não informada";
+    }
 
-          <h3>
-            <a href="${link}" target="_blank" rel="noopener noreferrer">
-              ${titulo}
-            </a>
-          </h3>
-
-          <div class="noticia-fonte">${fonte}</div>
-        </div>
-      </article>
-    `;
-  }).join("");
-
-  statusNoticias.textContent =
-    "Última atualização: " +
-    new Date().toLocaleTimeString("pt-BR", {
+    return d.toLocaleString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
       hour: "2-digit",
       minute: "2-digit"
     });
-}
-
-let carregando = false;
-
-async function atualizarNoticias() {
-  if (carregando) return;
-
-  carregando = true;
-  statusNoticias.textContent = "Buscando notícias recentes...";
-
-  if (botaoAtualizar) {
-    botaoAtualizar.disabled = true;
   }
 
-  try {
-    const resposta = await fetch(endereco, {
-      cache: "no-store"
-    });
+  function pegarImagem(item) {
+    let imagem =
+      item.thumbnail ||
+      (item.enclosure && item.enclosure.link) ||
+      "";
 
-    if (!resposta.ok) {
-      throw new Error("Erro ao consultar as notícias.");
+    if (!imagem && item.description) {
+      const div = document.createElement("div");
+      div.innerHTML = item.description;
+
+      const img = div.querySelector("img");
+
+      if (img) {
+        imagem = img.getAttribute("src") || "";
+      }
     }
 
-    const dados = await resposta.json();
+    return urlValida(imagem);
+  }
 
-    if (dados.status !== "ok" || !dados.items) {
-      throw new Error("Feed temporariamente indisponível.");
-    }
+  async function buscarFonte(fonte) {
+    const controlador = new AbortController();
 
-    mostrarNoticias(dados.items);
+    const tempo = setTimeout(
+      () => controlador.abort(),
+      15000
+    );
 
-  } catch (erro) {
-    statusNoticias.innerHTML =
-      'Não foi possível atualizar agora. ' +
-      '<a href="https://news.google.com/search?q=futebol&hl=pt-BR&gl=BR&ceid=BR:pt-419" target="_blank" rel="noopener">Veja as notícias aqui.</a>';
+    try {
+      const endereco =
+        PROXY + encodeURIComponent(fonte.url);
 
-    if (!lista.querySelector(".noticia")) {
-      lista.innerHTML =
-        "<p>As notícias estão temporariamente indisponíveis. Tente novamente mais tarde.</p>";
-    }
+      const resposta = await fetch(endereco, {
+        cache: "no-store",
+        signal: controlador.signal
+      });
 
-  } finally {
-    carregando = false;
+      if (!resposta.ok) {
+        throw new Error("Falha na fonte");
+      }
 
-    if (botaoAtualizar) {
-      botaoAtualizar.disabled = false;
+      const dados = await resposta.json();
+
+      if (
+        dados.status !== "ok" ||
+        !Array.isArray(dados.items)
+      ) {
+        throw new Error("Feed indisponível");
+      }
+
+      return dados.items.map(item => {
+        const link = urlValida(item.link);
+        const titulo = limparTexto(item.title);
+
+        if (!link || !titulo) return null;
+
+        return {
+          titulo: titulo,
+          link: link,
+          resumo: limparTexto(item.description).slice(0, 250),
+          imagem: pegarImagem(item),
+          fonte: fonte.nome,
+          publicacao: item.pubDate || "",
+          data: formatarData(item.pubDate)
+        };
+      }).filter(Boolean);
+
+    } finally {
+      clearTimeout(tempo);
     }
   }
-}
 
-if (botaoAtualizar) {
-  botaoAtualizar.addEventListener("click", atualizarNoticias);
-}
+  function criarCard(noticia) {
+    const card = document.createElement("article");
+    card.className = "noticia";
 
-atualizarNoticias();
+    if (noticia.imagem) {
+      const imagem = document.createElement("img");
 
-// Tenta atualizar automaticamente a cada 15 minutos.
-setInterval(atualizarNoticias, 15 * 60 * 1000);
+      imagem.src = noticia.imagem;
+      imagem.alt = "Imagem da notícia";
+      imagem.loading = "lazy";
+
+      imagem.onerror = function () {
+        this.remove();
+      };
+
+      card.appendChild(imagem);
+    }
+
+    const corpo = document.createElement("div");
+    corpo.className = "noticia-corpo";
+
+    const data = document.createElement("div");
+    data.className = "noticia-data";
+    data.textContent = noticia.data;
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = noticia.titulo;
+
+    const resumo = document.createElement("p");
+    resumo.textContent = noticia.resumo;
+
+    const fonte = document.createElement("div");
+    fonte.className = "noticia-fonte";
+    fonte.textContent = noticia.fonte;
+
+    const link = document.createElement("a");
+    link.href = noticia.link;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "LER NOTÍCIA COMPLETA →";
+
+    corpo.append(data, titulo);
+
+    if (noticia.resumo) {
+      corpo.appendChild(resumo);
+    }
+
+    corpo.append(fonte, link);
+    card.appendChild(corpo);
+
+    return card;
+  }
+
+  function mostrarNoticias() {
+    if (lista) {
+      lista.replaceChildren();
+
+      noticias.forEach(noticia => {
+        lista.appendChild(criarCard(noticia));
+      });
+    }
+
+    if (slider) {
+      slider.replaceChildren();
+
+      noticias.slice(0, 12).forEach(noticia => {
+        slider.appendChild(criarCard(noticia));
+      });
+    }
+  }
+
+  function atualizarStatus(mensagem) {
+    if (status) {
+      status.textContent = mensagem;
+    }
+  }
+
+  async function atualizarNoticias() {
+    if (carregando || (!lista && !slider)) return;
+
+    carregando = true;
+
+    if (botao) {
+      botao.disabled = true;
+      botao.textContent = "Buscando notícias...";
+    }
+
+    atualizarStatus("Buscando notícias publicadas hoje...");
+
+    try {
+      const resultados = await Promise.allSettled(
+        FONTES.map(buscarFonte)
+      );
+
+      let todas = [];
+
+      resultados.forEach(resultado => {
+        if (resultado.status === "fulfilled") {
+          todas = todas.concat(resultado.value);
+        }
+      });
+
+      const unicas = new Map();
+
+      todas.forEach(noticia => {
+        if (!unicas.has(noticia.link)) {
+          unicas.set(noticia.link, noticia);
+        }
+      });
+
+      todas = Array.from(unicas.values());
+
+      todas.sort((a, b) => {
+        return (
+          new Date(b.publicacao).getTime() -
+          new Date(a.publicacao).getTime()
+        );
+      });
+
+      const publicadasHoje = todas.filter(noticia =>
+        dataHoje(noticia.publicacao)
+      );
+
+      const selecionadas = publicadasHoje.length
+        ? publicadasHoje
+        : todas;
+
+      if (!selecionadas.length) {
+        atualizarStatus(
+          "Não foi possível obter notícias agora. Tente novamente."
+        );
+        return;
+      }
+
+      noticias = selecionadas.slice(0, LIMITE);
+
+      mostrarNoticias();
+
+      const horario = new Date().toLocaleTimeString(
+        "pt-BR",
+        {
+          hour: "2-digit",
+          minute: "2-digit"
+        }
+      );
+
+      atualizarStatus(
+        publicadasHoje.length
+          ? "Notícias de hoje • Atualizado às " + horario +
+            " • " + noticias.length + " notícias."
+          : "Não encontramos publicações de hoje nas fontes consultadas. Exibindo as notícias mais recentes disponíveis. Atualizado às " + horario + "."
+      );
+
+    } catch (erro) {
+      console.error("Erro nas notícias:", erro);
+
+      atualizarStatus(
+        "Falha temporária ao buscar notícias. Tente novamente."
+      );
+
+    } finally {
+      carregando = false;
+
+      if (botao) {
+        botao.disabled = false;
+        botao.textContent = "↻ Atualizar";
+      }
+    }
+  }
+
+  if (botao) {
+    botao.addEventListener(
+      "click",
+      atualizarNoticias
+    );
+  }
+
+  atualizarNoticias();
+
+  setInterval(() => {
+    if (document.visibilityState === "visible") {
+      atualizarNoticias();
+    }
+  }, INTERVALO);
+
+})();
